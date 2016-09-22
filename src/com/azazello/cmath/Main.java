@@ -9,14 +9,13 @@ public class Main {
     private static double[][] matrix;
     private static double[] vectorOfValues;
     private static Input input;
-    private static Output output;
-    private static int PRECISION = 2;
+    private static MatrixPrinter matrixPrinter;
 
     public static void main(String[] args) {
         input = new Input(type);
-        output = new Output();
+        matrixPrinter = new MatrixPrinter();
         while (true) {
-            output.showMainMenu(type);
+            matrixPrinter.printMainMenu(type);
             switch (input.getMenuItem()) {
                 case 1: {
                     changeInputType();
@@ -50,18 +49,19 @@ public class Main {
 
     private static void gaussMethod() {
 
-        if (dataEntered == false) {
+        if (!dataEntered) {
             System.out.println("The input data is not found, type the new data \n");
 
         } else {
 
             GaussMethod method = new GaussMethod(matrix[0].length - 1, matrix, vectorOfValues);
             System.out.println("\nTriangular matrix of system: ");
-            output.fShowRealArray(method.getTriangularMatrix(), matrix.length, matrix[0].length - 1, String.valueOf(Math.round((method.getMaxStrLength()))), String.valueOf(PRECISION));
+
+            matrixPrinter.printTriangularMatrix(method.getTriangularMatrix(), String.valueOf(Math.round(method.getMaxStrLength())));
             System.out.println("Vector of solutions: ");
-            output.fShowRealArray(method.getVectorOfSolutions(), matrix.length, String.valueOf(Math.round((method.getMaxStrLength()))), String.valueOf(PRECISION));
+            matrixPrinter.printVector(method.getVectorOfSolutions(), String.valueOf(Math.round((method.getMaxStrLength()))) );
             System.out.println("Vector of residuals: ");
-            output.fShowRealArray(method.getVectorOfResiduals(), matrix.length, String.valueOf(Math.round((method.getMaxStrLength()))), String.valueOf(PRECISION));
+            matrixPrinter.printVector(method.getVectorOfResiduals(), String.valueOf(Math.round((method.getMaxStrLength()))));
             dataEntered = false;
         }
 
@@ -69,7 +69,7 @@ public class Main {
 
     private static void changeInputType() {
         while (true) {
-            output.showSideMenu();
+            matrixPrinter.printSideMenu();
             switch (input.getMenuItem()) {
                 case 1: {
                     type = InputType.CMD_INPUT;
@@ -102,7 +102,7 @@ public class Main {
     private static double[][] enterNewData() {
         matrix = input.getMatrix();
         System.out.println("\nMatrix of system of equations: ");
-        output.fShowRealArray(matrix, matrix.length, matrix[0].length, String.valueOf(Math.round((input.getMaxStrLength()))), String.valueOf(PRECISION));
+        matrixPrinter.printMatrix(matrix, String.valueOf(Math.round((input.getMaxStrLength()))));
         allocateVectorOfValues();
         dataEntered = true;
         return matrix;
