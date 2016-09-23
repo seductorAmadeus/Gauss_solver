@@ -100,7 +100,7 @@ public class Main {
     }
 
     private static double[][] enterNewData() {
-        matrix = input.getMatrix();
+        input.getMatrix();
         allocateVectorOfValues();
         System.out.println("\nAugmented matrix of the system: ");
         matrixPrinter.printMatrix(matrix, String.valueOf(Math.round((input.getMaxStrLength()))));

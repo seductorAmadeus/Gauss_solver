@@ -7,7 +7,6 @@ public class Input {
     private InputType type;
     private int n; // count of rows
     private Scanner in, menuItemIn;
-    private double[][] matrix;
     private Double[] subMatrix;
     private Boolean actionWasSuccessfully = false;
     private Random random;
@@ -156,7 +155,7 @@ public class Input {
         return subMatrix;
     }
 
-    public double[][] getMatrix() {
+    public void getMatrix() {
         int i, j;
 
         while (true) {
@@ -194,12 +193,8 @@ public class Input {
                 getStringValues();
             }
             for (j = 0; j < n + 1; j++) {
-
                 inputData.fillMatrix(i, j, subMatrix[j]);
-              //  matrix[i][j] = subMatrix[j];
             }
         }
-
-        return matrix;
     }
 }
