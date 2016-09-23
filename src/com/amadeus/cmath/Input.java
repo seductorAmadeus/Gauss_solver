@@ -11,6 +11,7 @@ public class Input {
     private Double[] subMatrix;
     private Boolean actionWasSuccessfully = false;
     private Random random;
+    private InputData inputData;
     private int maxStrLength = 0;
 
     private static String filePath = "Please, enter the full (txt) file path: \n",
@@ -23,10 +24,12 @@ public class Input {
             inputValueFormatExp = "Input error, re-enter the positive (integer) dimension of the matrix: \n";
 
     Input(InputType inputType) {
+
+        inputData = new InputData();
+
         switch (inputType) {
             case FILE_INPUT: {
                 type = InputType.FILE_INPUT;
-                filePath = "";
                 inputLine = "";
                 inputLineFormatExp = "Format error-line, change the line in the file. \n";
                 arrayIndexOutOfBoundsExp = "Invalid number of elements in the line, change the line in the file. \n";
@@ -161,11 +164,18 @@ public class Input {
             try {
 
                 System.out.print(inputDimensionMatrix);
+
                 n = Integer.valueOf(in.nextLine());
+
                 if ((n <= 1) || (n > 20)) {
                     throw new NumberFormatException();
                 }
+
+                inputData.setDimensionOfMatrix(n);
+
                 break;
+
+
 
             } catch (NumberFormatException exp) {
                 System.out.print(inputValueFormatExp);
@@ -175,7 +185,7 @@ public class Input {
             }
 
         }
-        matrix = new double[n][n + 1];
+
 
         for (i = 0; i < n; i++) {
             if (type == InputType.RANDOM_COEFFICIENT) {
@@ -185,7 +195,8 @@ public class Input {
             }
             for (j = 0; j < n + 1; j++) {
 
-                matrix[i][j] = subMatrix[j];
+                inputData.fillMatrix(i, j, subMatrix[j]);
+              //  matrix[i][j] = subMatrix[j];
             }
         }
 
