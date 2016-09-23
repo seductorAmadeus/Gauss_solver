@@ -95,7 +95,7 @@ public class Main {
         input.getMatrix();
 
         System.out.println("\nAugmented matrix of the system: ");
-        matrixPrinter.printMatrix(matrix, String.valueOf(Math.round((input.getMaxStrLength()))));
+        matrixPrinter.printMatrix(InputData.getMatrix(), String.valueOf(Math.round((input.getMaxStrLength()))));
 
         dataEntered = true;
 

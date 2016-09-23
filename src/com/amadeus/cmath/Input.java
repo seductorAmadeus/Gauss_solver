@@ -24,8 +24,6 @@ public class Input {
 
     Input(InputType inputType) {
 
-        inputData = new InputData();
-
         switch (inputType) {
             case FILE_INPUT: {
                 type = InputType.FILE_INPUT;
@@ -161,20 +159,16 @@ public class Input {
         while (true) {
 
             try {
-
                 System.out.print(inputDimensionMatrix);
-
                 n = Integer.valueOf(in.nextLine());
 
                 if ((n <= 1) || (n > 20)) {
                     throw new NumberFormatException();
                 }
 
-                inputData.setDimensionOfMatrix(n);
-
+                InputData.setDimensionOfMatrix(n);
+                InputData.createMatrix();
                 break;
-
-
 
             } catch (NumberFormatException exp) {
                 System.out.print(inputValueFormatExp);
@@ -185,7 +179,6 @@ public class Input {
 
         }
 
-
         for (i = 0; i < n; i++) {
             if (type == InputType.RANDOM_COEFFICIENT) {
                 getStringOfRandomValues();
@@ -193,10 +186,10 @@ public class Input {
                 getStringValues();
             }
             for (j = 0; j < n + 1; j++) {
-                inputData.fillMatrix(i, j, subMatrix[j]);
+                InputData.fillMatrix(i, j, subMatrix[j]);
             }
         }
-
-        inputData.allocateVectorOfValues();
+        InputData.createVectorOfValues();
+        InputData.allocateVectorOfValues();
     }
 }
