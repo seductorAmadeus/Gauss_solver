@@ -1,8 +1,5 @@
 package com.amadeus.cmath;
 
-/**
- * Created by admin on 23.09.2016.
- */
 class InputData {
     private double[][] matrix;
     private double[] vectorOfSolutions, vectorOfResiduals, vectorOfValues;
@@ -19,4 +16,15 @@ class InputData {
     public int getDimensionOfMatrix() {
         return n;
     }
+    public double[][] getMatrix () {
+        return matrix.clone();
+    }
+
+    public void allocateVectorOfValues() {
+        vectorOfValues = new double[matrix.length];
+        for (int i = 0; i < matrix[0].length - 1; i++) {
+            vectorOfValues[i] = matrix[i][matrix[0].length - 1];
+        }
+    }
+
 }

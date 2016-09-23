@@ -39,14 +39,6 @@ public class Main {
         }
     }
 
-
-    private static void allocateVectorOfValues() {
-        vectorOfValues = new double[matrix.length];
-        for (int i = 0; i < matrix[0].length - 1; i++) {
-            vectorOfValues[i] = matrix[i][matrix[0].length - 1];
-        }
-    }
-
     private static void gaussMethod() {
 
         if (!dataEntered) {
@@ -99,14 +91,14 @@ public class Main {
         }
     }
 
-    private static double[][] enterNewData() {
+    private static void enterNewData() {
         input.getMatrix();
-        allocateVectorOfValues();
+
         System.out.println("\nAugmented matrix of the system: ");
         matrixPrinter.printMatrix(matrix, String.valueOf(Math.round((input.getMaxStrLength()))));
 
         dataEntered = true;
-        return matrix;
+
     }
 
 }

@@ -196,5 +196,7 @@ public class Input {
                 inputData.fillMatrix(i, j, subMatrix[j]);
             }
         }
+
+        inputData.allocateVectorOfValues();
     }
 }
