@@ -2,7 +2,7 @@ package com.amadeus.cmath;
 
 class InputData {
     private static double[][] matrix;
-    private static double[] vectorOfSolutions, vectorOfResiduals, vectorOfValues;
+    private static double[]  vectorOfValues;
     private static int n; // dimension
 
     public static void fillMatrix(int i, int j, double value) {
@@ -19,6 +19,10 @@ class InputData {
 
     public static double[][] getMatrix() {
         return matrix.clone();
+    }
+
+    public static double[] getVectorOfValues() {
+        return vectorOfValues.clone();
     }
 
     public static void createMatrix() {

@@ -59,7 +59,6 @@ public class GaussMethod {
                     }
                 }
                 // если j < n, то
-
                 vectorOfValues[i] = vectorOfValues[i] - c * vectorOfValues[k];
             }
         }
@@ -71,11 +70,8 @@ public class GaussMethod {
 
         for (int n = 0; n < vectorOfResiduals.length; n++) {
             vectorOfResiduals[n] = vectorOfValues[n] - getResultOfMultiplication(n);
-
-         //   System.out.println("Test №" + (n+1) + vectorOfResiduals[n] );
+            //   System.out.println("Test №" + (n+1) + vectorOfResiduals[n] );
         }
-
-
         return vectorOfResiduals;
     }
 
@@ -83,14 +79,12 @@ public class GaussMethod {
         double sum = 0.0;
         for (int i = 0; i < parityCheckMatrix[0].length - 1; i++) {
             sum += vectorOfSolutions[i] * parityCheckMatrix[n][i];
-
         }
         //System.out.println(sum);
         return sum;
     }
 
     public double[] getVectorOfSolutions() {
-
         vectorOfSolutions[n - 1] = vectorOfValues[n - 1] / matrix[n - 1][n - 1];
         i = n - 1;
         for (; i > -1; i--) { // -1?
@@ -101,7 +95,6 @@ public class GaussMethod {
             }
             vectorOfSolutions[i] = (vectorOfValues[i] - s) / matrix[i][i];
         }
-
         return vectorOfSolutions;
     }
 
@@ -111,7 +104,7 @@ public class GaussMethod {
          double[] decMatrix = {-1, 2, 5, 1, 899, 2};
          method.mainAlgorithm(6, testMatrix, decMatrix);
      }
- */
+    */
     private double[][] permutationEquations(double[][] matrix, int k, int n) {
         // k - индекс matrix[k][k] - ого элемента
         // n - число строк
@@ -124,7 +117,6 @@ public class GaussMethod {
                 break;
             }
         }
-
         // пусть найдена строка с нулевым элементом
         // тогда меняем ее со строкой c индексом k
         // предположим, что n - число элементов

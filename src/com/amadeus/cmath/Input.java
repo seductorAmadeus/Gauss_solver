@@ -4,13 +4,13 @@ import java.io.*;
 import java.util.*;
 
 public class Input {
+
     private InputType type;
     private int n; // count of rows
     private Scanner in, menuItemIn;
     private Double[] subMatrix;
     private Boolean actionWasSuccessfully = false;
     private Random random;
-    private InputData inputData;
     private int maxStrLength = 0;
 
     private static String filePath = "Please, enter the full (txt) file path: \n",

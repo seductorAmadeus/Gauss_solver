@@ -1,13 +1,10 @@
 package com.amadeus.cmath;
 
-
 public class Main {
 
     private static InputType type = InputType.RANDOM_COEFFICIENT;
     private static Boolean dataEntered = false;
     private static Boolean actionWasSuccessfully = false;
-    private static double[][] matrix;
-    private static double[] vectorOfValues;
     private static Input input;
     private static MatrixPrinter matrixPrinter;
 
@@ -46,17 +43,15 @@ public class Main {
 
         } else {
 
-            GaussMethod method = new GaussMethod(matrix[0].length - 1, matrix, vectorOfValues);
+            GaussMethod method = new GaussMethod(InputData.getDimensionOfMatrix(), InputData.getMatrix(), InputData.getVectorOfValues());
             System.out.println("\nTriangular matrix of system: ");
-
             matrixPrinter.printTriangularMatrix(method.getTriangularMatrix(), String.valueOf(Math.round(method.getMaxStrLength())));
             System.out.println("Vector of solutions: ");
-            matrixPrinter.printVector(method.getVectorOfSolutions(), String.valueOf(Math.round((method.getMaxStrLength()))) );
+            matrixPrinter.printVector(method.getVectorOfSolutions(), String.valueOf(Math.round((method.getMaxStrLength()))));
             System.out.println("Vector of residuals: ");
             matrixPrinter.printVector(method.getVectorOfResiduals(), String.valueOf(Math.round((method.getMaxStrLength()))));
             dataEntered = false;
         }
-
     }
 
     private static void changeInputType() {
@@ -87,18 +82,13 @@ public class Main {
                 actionWasSuccessfully = false;
                 break;
             }
-
         }
     }
 
     private static void enterNewData() {
         input.getMatrix();
-
         System.out.println("\nAugmented matrix of the system: ");
         matrixPrinter.printMatrix(InputData.getMatrix(), String.valueOf(Math.round((input.getMaxStrLength()))));
-
         dataEntered = true;
-
     }
-
 }
