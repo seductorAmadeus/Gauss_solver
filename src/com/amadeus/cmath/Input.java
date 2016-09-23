@@ -1,4 +1,4 @@
-package com.azazello.cmath;
+package com.amadeus.cmath;
 
 import java.io.*;
 import java.util.*;

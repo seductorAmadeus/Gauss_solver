@@ -1,4 +1,4 @@
-package com.azazello.cmath;
+package com.amadeus.cmath;
 
 
 public class Main {

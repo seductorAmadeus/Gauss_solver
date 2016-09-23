@@ -1,8 +1,5 @@
-package com.azazello.cmath;
+package com.amadeus.cmath;
 
-/**
- * Created by admin on 05.09.2016.
- */
 public enum InputType {
     FILE_INPUT("from a file"),
     CMD_INPUT("from the command line"),
