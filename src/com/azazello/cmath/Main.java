@@ -41,7 +41,7 @@ public class Main {
 
 
     private static void allocateVectorOfValues() {
-        vectorOfValues = new double[matrix[0].length];
+        vectorOfValues = new double[matrix.length];
         for (int i = 0; i < matrix[0].length - 1; i++) {
             vectorOfValues[i] = matrix[i][matrix[0].length - 1];
         }
@@ -101,9 +101,10 @@ public class Main {
 
     private static double[][] enterNewData() {
         matrix = input.getMatrix();
-        System.out.println("\nMatrix of system of equations: ");
-        matrixPrinter.printMatrix(matrix, String.valueOf(Math.round((input.getMaxStrLength()))));
         allocateVectorOfValues();
+        System.out.println("\nAugmented matrix of the system: ");
+        matrixPrinter.printMatrix(matrix, String.valueOf(Math.round((input.getMaxStrLength()))));
+
         dataEntered = true;
         return matrix;
     }

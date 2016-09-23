@@ -7,18 +7,21 @@ public class GaussMethod {
     private double[] vectorOfSolutions, vectorOfResiduals;
     private int n;
     private double[][] matrix;
-    private double[] decisionMatrix;
-    private int maxStrLength = 0 ;
+    private double[][] parityCheckMatrix;
+    private double[] vectorOfValues;
+    private int maxStrLength = 0;
 
-    GaussMethod(int n, double[][] matrix, double[] decisionMatrix) {
+    GaussMethod(int n, double[][] matrix, double[] vectorOfValues) {
         this.n = n;
         this.matrix = matrix;
-        this.decisionMatrix = decisionMatrix;
+        parityCheckMatrix = matrix.clone(); // or copy?
+
+        this.vectorOfValues = vectorOfValues;
         vectorOfSolutions = new double[n];
         vectorOfResiduals = new double[n];
     }
 
-    public int getMaxStrLength () {
+    public int getMaxStrLength() {
         return maxStrLength;
     }
 
@@ -52,28 +55,43 @@ public class GaussMethod {
                 for (; j < n; j++) {
                     matrix[i][j] = matrix[i][j] - c * matrix[k][j];
                     if (String.valueOf(matrix[i][j]).length() > maxStrLength) {
-                       maxStrLength = String.valueOf(matrix[i][j]).length();
+                        maxStrLength = String.valueOf(matrix[i][j]).length();
                     }
                 }
                 // если j < n, то
-                decisionMatrix[i] = decisionMatrix[i] - c * decisionMatrix[k];
+
+                vectorOfValues[i] = vectorOfValues[i] - c * vectorOfValues[k];
             }
         }
         return matrix;
 
     }
 
-    public double[] getVectorOfResiduals () {
+    public double[] getVectorOfResiduals() {
 
+        for (int n = 0; n < vectorOfResiduals.length; n++) {
+            vectorOfResiduals[n] = vectorOfValues[n] - getResultOfMultiplication(n);
 
+         //   System.out.println("Test №" + (n+1) + vectorOfResiduals[n] );
+        }
 
 
         return vectorOfResiduals;
     }
 
+    private double getResultOfMultiplication(int n) {
+        double sum = 0.0;
+        for (int i = 0; i < parityCheckMatrix[0].length - 1; i++) {
+            sum += vectorOfSolutions[i] * parityCheckMatrix[n][i];
+
+        }
+        //System.out.println(sum);
+        return sum;
+    }
+
     public double[] getVectorOfSolutions() {
 
-        vectorOfSolutions[n - 1] = decisionMatrix[n - 1] / matrix[n - 1][n - 1];
+        vectorOfSolutions[n - 1] = vectorOfValues[n - 1] / matrix[n - 1][n - 1];
         i = n - 1;
         for (; i > -1; i--) { // -1?
             j = i + 1;
@@ -81,7 +99,7 @@ public class GaussMethod {
             for (; j < n; j++) {
                 s = s + matrix[i][j] * vectorOfSolutions[j];
             }
-            vectorOfSolutions[i] = (decisionMatrix[i] - s) / matrix[i][i];
+            vectorOfSolutions[i] = (vectorOfValues[i] - s) / matrix[i][i];
         }
 
         return vectorOfSolutions;
@@ -116,6 +134,6 @@ public class GaussMethod {
             matrix[zeroElement][i] = matrix[k][i];
             matrix[k][i] = temp;
         }
-       return matrix;
+        return matrix;
     }
 }

@@ -5,8 +5,7 @@ import java.util.*;
 
 public class Input {
     private InputType type;
-    private int n; // count of elements in the row
-    private int q; // count of rows
+    private int n; // count of rows
     private Scanner in, menuItemIn;
     private double[][] matrix;
     private Double[] subMatrix;
@@ -20,8 +19,7 @@ public class Input {
             inputLineFormatExp = "Format error-line, retype the line: \n",
             arrayIndexOutOfBoundsExp = "Invalid number of elements in the line, retype the line \n",
             inputLineSomeExp = "Error reading line, retype the line:  \n",
-            inputRowsValue = "Enter the (integer) number of rows in the matrix: \n",
-            inputColumnsValue = "Enter the (integer) number of columns in the matrix: \n",
+            inputDimensionMatrix = "Enter dimension of the matrix: \n",
             inputValueFormatExp = "Input error, re-enter the positive (integer) dimension of the matrix: \n";
 
     Input(InputType inputType) {
@@ -33,10 +31,10 @@ public class Input {
                 inputLineFormatExp = "Format error-line, change the line in the file. \n";
                 arrayIndexOutOfBoundsExp = "Invalid number of elements in the line, change the line in the file. \n";
                 inputLineSomeExp = "Error reading line, change the line in the file.  \n";
-                inputRowsValue = "";
-                inputColumnsValue = "";
+                inputDimensionMatrix = "";
                 inputValueFormatExp = "Input error, change the line in the file. \n ";
-             /*   while (true) {
+
+               /* while (true) {
                     System.out.print(filePath);
                     try {
                         Scanner filepathIn = new Scanner(System.in);
@@ -67,13 +65,9 @@ public class Input {
         }
     }
 
-    /* public static void main(String[] args) {
-
-     }
-     */
     private Double[] getStringOfRandomValues() {
 
-        subMatrix = new Double[n];
+        subMatrix = new Double[n + 1];
 
         for (int i = 0; i < subMatrix.length; i++) {
 
@@ -105,7 +99,7 @@ public class Input {
             if (actionWasSuccessfully) {
                 actionWasSuccessfully = false;
                 break;
-            } else continue;
+            }
         }
         return menuItem;
     }
@@ -119,7 +113,7 @@ public class Input {
                 System.out.print(inputLine);
                 someString = in.nextLine();
                 resultString = someString.split(" ");
-                subMatrix = new Double[n];
+                subMatrix = new Double[n + 1];
                 for (int k = 0; k < resultString.length; k++) {
                     if (resultString[k].length() == 0) {
                         continue;
@@ -132,7 +126,7 @@ public class Input {
                     i++;
                 }
 
-                if (subMatrix[n - 1] == null) {
+                if (subMatrix[n] == null) {
                     throw new ArrayIndexOutOfBoundsException();
                 }
                 break;
@@ -165,11 +159,10 @@ public class Input {
         while (true) {
 
             try {
-                System.out.print(inputRowsValue);
-                q = Integer.valueOf(in.nextLine());
-                System.out.print(inputColumnsValue);
+
+                System.out.print(inputDimensionMatrix);
                 n = Integer.valueOf(in.nextLine());
-                if ((q <= 1 || n <= 1) || (q > 20 || n > 20)) {
+                if ((n <= 1) || (n > 20)) {
                     throw new NumberFormatException();
                 }
                 break;
@@ -182,15 +175,16 @@ public class Input {
             }
 
         }
-        matrix = new double[q][n];
+        matrix = new double[n][n + 1];
 
-        for (i = 0; i < q; i++) {
+        for (i = 0; i < n; i++) {
             if (type == InputType.RANDOM_COEFFICIENT) {
                 getStringOfRandomValues();
             } else {
                 getStringValues();
             }
-            for (j = 0; j < n; j++) {
+            for (j = 0; j < n + 1; j++) {
+
                 matrix[i][j] = subMatrix[j];
             }
         }
