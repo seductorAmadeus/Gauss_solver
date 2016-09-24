@@ -67,7 +67,7 @@ public class GaussSolver {
         return sum;
     }
 
-    public static double[] getVectorOfSolutions(int n, double[] vectorOfSolutions, double[][] matrix, double[] vectorOfValues) { // matrix == triangular matrix
+    public static void getVectorOfSolutions(int n, double[] vectorOfSolutions, double[][] matrix, double[] vectorOfValues) { // matrix == triangular matrix
         vectorOfSolutions[n - 1] = vectorOfValues[n - 1] / matrix[n - 1][n - 1];
         i = n - 1;
         for (; i > -1; i--) { // -1?
@@ -78,7 +78,7 @@ public class GaussSolver {
             }
             vectorOfSolutions[i] = (vectorOfValues[i] - s) / matrix[i][i];
         }
-        return vectorOfSolutions;
+
     }
 
     /* public static void main(String[] args) {
