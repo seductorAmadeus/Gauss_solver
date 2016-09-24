@@ -6,7 +6,7 @@ public class GaussSolver {
     private static double c, s;
     private static int maxStrLength = 0;
 
-    public int getMaxStrLength() {
+    public static int getMaxStrLength() {
         return maxStrLength;
     }
 
