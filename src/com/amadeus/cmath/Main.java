@@ -49,11 +49,11 @@ public class Main {
 
             GaussSolver.getVectorOfSolutions(InputData.getDimensionOfMatrix(), OutputData.getVectorOfSolutions(), OutputData.getTriangularMatrix(), InputData.getVectorOfValues());
             System.out.println("Vector of solutions: ");
-            matrixPrinter.printVector(OutputData.getVectorOfSolutions(), String.valueOf(Math.round((GaussSolver.getMaxStrLength()))));
+            matrixPrinter.printVector(OutputData.getVectorOfSolutions(), String.valueOf(Math.round((GaussSolver.getMaxStrLength()))), "f");
 
             GaussSolver.getVectorOfResiduals(OutputData.getVectorOfResiduals(), InputData.getVectorOfValues(), InputData.getMatrix(), OutputData.getVectorOfSolutions());
             System.out.println("Vector of residuals: ");
-            matrixPrinter.printVector(OutputData.getVectorOfResiduals(), String.valueOf(Math.round((GaussSolver.getMaxStrLength()))));
+            matrixPrinter.printVector(OutputData.getVectorOfResiduals(), String.valueOf(Math.round((GaussSolver.getMaxStrLength()))), "e");
 
             dataEntered = false;
         }

@@ -1,13 +1,16 @@
 package com.amadeus.cmath;
 
+import java.math.BigDecimal;
+
 public class MatrixPrinter {
 
     private int PRECISION = 4;
     private String templateOutputString = "%#.&f";
 
-    public void printVector(double[] array, String maxSize) {
-        templateOutputString = templateOutputString.replace("#", maxSize).replace("&", String.valueOf(PRECISION));
+    public void printVector(double[] array, String maxSize, String format) {
+        templateOutputString = templateOutputString.replace("#", maxSize).replace("&", String.valueOf(PRECISION)).replace("f", format);
         for (int i = 0; i < array.length; i++) {
+            //System.out.println(array[i]);
             System.out.printf(templateOutputString, array[i]);
             System.out.println();
         }
