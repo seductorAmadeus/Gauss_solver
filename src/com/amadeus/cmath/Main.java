@@ -43,7 +43,7 @@ public class Main {
 
         } else {
 
-            GaussMethod method = new GaussMethod(InputData.getDimensionOfMatrix(), InputData.getMatrix(), InputData.getVectorOfValues());
+            GaussSolver method = new GaussSolver(InputData.getDimensionOfMatrix(), InputData.getMatrix(), InputData.getVectorOfValues());
             System.out.println("\nTriangular matrix of system: ");
             matrixPrinter.printTriangularMatrix(method.getTriangularMatrix(), String.valueOf(Math.round(method.getMaxStrLength())));
             System.out.println("Vector of solutions: ");

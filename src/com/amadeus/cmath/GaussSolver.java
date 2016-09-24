@@ -1,6 +1,6 @@
 package com.amadeus.cmath;
 
-public class GaussMethod {
+public class GaussSolver {
 
     private int i, k, j;
     private double c, s;
@@ -11,7 +11,7 @@ public class GaussMethod {
     private double[] vectorOfValues;
     private int maxStrLength = 0;
 
-    GaussMethod(int n, double[][] matrix, double[] vectorOfValues) {
+    GaussSolver(int n, double[][] matrix, double[] vectorOfValues) {
         this.n = n;
         this.matrix = matrix;
         parityCheckMatrix = matrix.clone(); // or copy?
@@ -99,7 +99,7 @@ public class GaussMethod {
     }
 
     /* public static void main(String[] args) {
-         GaussMethod method = new GaussMethod(6);
+         GaussSolver method = new GaussSolver(6);
          double[][] testMatrix = {{1, 2, 4, 5,6, 88}, {13, 3, 13, 4, 1 ,6}, {66, 2, 4, 5, 2, 5}, {2, 1,3, 0,3,3}, {25, 66,1, 2,5,1} , {2, 51,2, 3,1,2}};
          double[] decMatrix = {-1, 2, 5, 1, 899, 2};
          method.mainAlgorithm(6, testMatrix, decMatrix);
