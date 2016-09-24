@@ -7,6 +7,12 @@ class OutputData {
     public static void setTriangularMatrix(double[][] matrix) {
         triangularMatrix = matrix;
     }
+    public static void setVectorOfResiduals(double[] vector) {
+        vectorOfResiduals = vector;
+    }
+    public static void setVectorOfSolutions(double[] vector) {
+        vectorOfSolutions = vector;
+    }
 
     public static void createVectorOfSolutions(int n) {
         vectorOfSolutions = new double[n];

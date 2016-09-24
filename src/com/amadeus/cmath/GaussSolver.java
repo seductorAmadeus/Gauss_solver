@@ -58,6 +58,8 @@ public class GaussSolver {
             vectorOfResiduals[n] = vectorOfValues[n] - getResultOfMultiplication(n, vectorOfSolutions, matrix);
             //   System.out.println("Test №" + (n+1) + vectorOfResiduals[n] );
         }
+        OutputData.setVectorOfResiduals(vectorOfResiduals);
+
     }
 
     private static double getResultOfMultiplication(int n, double[] vectorOfSolutions, double[][] parityCheckMatrix) { //original matrix
@@ -80,7 +82,7 @@ public class GaussSolver {
             }
             vectorOfSolutions[i] = (vectorOfValues[i] - s) / matrix[i][i];
         }
-
+        OutputData.setVectorOfSolutions(vectorOfSolutions);
     }
 
     /* public static void main(String[] args) {
