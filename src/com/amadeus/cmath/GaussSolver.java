@@ -2,32 +2,17 @@ package com.amadeus.cmath;
 
 public class GaussSolver {
 
-    private int i, k, j;
-    private double c, s;
-    private double[] vectorOfSolutions, vectorOfResiduals;
-    private int n;
-    private double[][] matrix;
-    private double[][] parityCheckMatrix;
-    private double[] vectorOfValues;
-    private int maxStrLength = 0;
-
-    GaussSolver(int n, double[][] matrix, double[] vectorOfValues) {
-        this.n = n;
-        this.matrix = matrix;
-        parityCheckMatrix = matrix.clone(); // or copy?
-
-        this.vectorOfValues = vectorOfValues;
-        vectorOfSolutions = new double[n];
-        vectorOfResiduals = new double[n];
-    }
+    private static int i, j;
+    private static double c, s;
+    private static int maxStrLength = 0;
 
     public int getMaxStrLength() {
         return maxStrLength;
     }
 
-    public double[][] getTriangularMatrix() {
+    public static void getTriangularMatrix(int n, double[][] matrix, double[] vectorOfValues) {
 
-        k = 0;
+        int k = 0;
 
         for (; k < n - 1; k++) {
 
@@ -62,20 +47,18 @@ public class GaussSolver {
                 vectorOfValues[i] = vectorOfValues[i] - c * vectorOfValues[k];
             }
         }
-        return matrix;
 
     }
 
-    public double[] getVectorOfResiduals() {
+    public static void getVectorOfResiduals(double[] vectorOfResiduals, double[] vectorOfValues, double[][] matrix, double[] vectorOfSolutions) {
 
         for (int n = 0; n < vectorOfResiduals.length; n++) {
-            vectorOfResiduals[n] = vectorOfValues[n] - getResultOfMultiplication(n);
+            vectorOfResiduals[n] = vectorOfValues[n] - getResultOfMultiplication(n, vectorOfSolutions, matrix);
             //   System.out.println("Test №" + (n+1) + vectorOfResiduals[n] );
         }
-        return vectorOfResiduals;
     }
 
-    private double getResultOfMultiplication(int n) {
+    private static double getResultOfMultiplication(int n, double[] vectorOfSolutions, double[][] parityCheckMatrix) { //original matrix
         double sum = 0.0;
         for (int i = 0; i < parityCheckMatrix[0].length - 1; i++) {
             sum += vectorOfSolutions[i] * parityCheckMatrix[n][i];
@@ -84,7 +67,7 @@ public class GaussSolver {
         return sum;
     }
 
-    public double[] getVectorOfSolutions() {
+    public static double[] getVectorOfSolutions(int n, double[] vectorOfSolutions, double[][] matrix, double[] vectorOfValues) { // matrix == triangular matrix
         vectorOfSolutions[n - 1] = vectorOfValues[n - 1] / matrix[n - 1][n - 1];
         i = n - 1;
         for (; i > -1; i--) { // -1?
@@ -105,7 +88,7 @@ public class GaussSolver {
          method.mainAlgorithm(6, testMatrix, decMatrix);
      }
     */
-    private double[][] permutationEquations(double[][] matrix, int k, int n) {
+    private static double[][] permutationEquations(double[][] matrix, int k, int n) {
         // k - индекс matrix[k][k] - ого элемента
         // n - число строк
         // добавить условие, что найдена строка с  нулевым элементом
