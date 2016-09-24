@@ -23,7 +23,7 @@ public class Main {
                 }
                 break;
                 case 3: {
-                    gaussMethod();
+                    runGaussSolver();
                 }
                 break;
                 case 4: {
@@ -36,20 +36,25 @@ public class Main {
         }
     }
 
-    private static void gaussMethod() {
+    private static void runGaussSolver() {
 
         if (!dataEntered) {
             System.out.println("The input data is not found, type the new data \n");
 
         } else {
 
-            GaussSolver method = new GaussSolver(InputData.getDimensionOfMatrix(), InputData.getMatrix(), InputData.getVectorOfValues());
+            GaussSolver.getTriangularMatrix(InputData.getDimensionOfMatrix(), InputData.getMatrix(), InputData.getVectorOfValues());
             System.out.println("\nTriangular matrix of system: ");
-            matrixPrinter.printTriangularMatrix(method.getTriangularMatrix(), String.valueOf(Math.round(method.getMaxStrLength())));
+            matrixPrinter.printTriangularMatrix(OutputData.getTriangularMatrix(), String.valueOf(Math.round(GaussSolver.getMaxStrLength())));
+
+            GaussSolver.getVectorOfSolutions(InputData.getDimensionOfMatrix(), OutputData.getVectorOfSolutions(), OutputData.getTriangularMatrix(), InputData.getVectorOfValues());
             System.out.println("Vector of solutions: ");
-            matrixPrinter.printVector(method.getVectorOfSolutions(), String.valueOf(Math.round((method.getMaxStrLength()))));
+            matrixPrinter.printVector(OutputData.getVectorOfSolutions(), String.valueOf(Math.round((GaussSolver.getMaxStrLength()))));
+
+            GaussSolver.getVectorOfResiduals(OutputData.getVectorOfResiduals(), InputData.getVectorOfValues(), InputData.getMatrix(), OutputData.getVectorOfSolutions());
             System.out.println("Vector of residuals: ");
-            matrixPrinter.printVector(method.getVectorOfResiduals(), String.valueOf(Math.round((method.getMaxStrLength()))));
+            matrixPrinter.printVector(OutputData.getVectorOfResiduals(), String.valueOf(Math.round((GaussSolver.getMaxStrLength()))));
+
             dataEntered = false;
         }
     }
