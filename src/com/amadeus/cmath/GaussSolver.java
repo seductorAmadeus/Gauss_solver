@@ -35,9 +35,7 @@ public class GaussSolver {
                 vectorOfValues[i] = vectorOfValues[i] - c * vectorOfValues[k];
             }
         }
-        OutputData.setTriangularMatrix(matrix.clone());
-        OutputData.createVectorOfSolutions(n);
-        OutputData.createVectorOfResiduals(n);
+        OutputData.setNewOutputData(matrix.clone());
 
         vectorOfSolutions = OutputData.getVectorOfSolutions();
 

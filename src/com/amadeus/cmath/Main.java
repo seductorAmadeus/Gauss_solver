@@ -43,6 +43,7 @@ public class Main {
 
         } else {
             GaussSolver.runGaussMethod(InputData.getDimensionOfMatrix(),InputData.getMatrix(), InputData.getVectorOfValues());
+
             GaussSolver.getVectorOfResiduals(OutputData.getVectorOfResiduals(), InputData.getOriginalVectorOfValues(), InputData.getOriginalMatrix(), OutputData.getVectorOfSolutions());
 
             System.out.println("\nTriangular matrix of system: ");

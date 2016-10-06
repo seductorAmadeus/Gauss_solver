@@ -4,15 +4,17 @@ class OutputData {
     private static double[][] triangularMatrix;
     private static double[] vectorOfSolutions, vectorOfResiduals;
 
-    public static void setTriangularMatrix(double[][] matrix) {
+    public static void setNewOutputData(double[][] matrix) {
         triangularMatrix = matrix;
+        createVectorOfSolutions(matrix[0].length);
+        createVectorOfResiduals(matrix[0].length);
     }
 
     public static void setVectorOfResiduals(double[] vector) {
         vectorOfResiduals = vector;
     }
 
-    public static void createVectorOfSolutions(int n) {
+    private static void createVectorOfSolutions(int n) {
         vectorOfSolutions = new double[n];
     }
 
@@ -28,7 +30,7 @@ class OutputData {
         return vectorOfResiduals.clone();
     }
 
-    public static void createVectorOfResiduals(int n) {
+    private static void createVectorOfResiduals(int n) {
         vectorOfResiduals = new double[n];
     }
 }
