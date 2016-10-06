@@ -8,7 +8,7 @@ public class MatrixPrinter {
     public void printVector(double[] array, String maxSize, String format) {
         templateOutputString = templateOutputString.replace("#", maxSize).replace("&", String.valueOf(PRECISION)).replace("f", format);
         for (int i = 0; i < array.length; i++) {
-            System.out.printf(templateOutputString, array[i]);
+            System.out.printf(templateOutputString, array[i] + 0.0 );
             System.out.println();
         }
         System.out.println();
@@ -52,7 +52,7 @@ public class MatrixPrinter {
         templateOutputString = templateOutputString.replace("#", maxSize).replace("&", String.valueOf(PRECISION));
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[0].length; j++) {
-                System.out.printf(templateOutputString, array[i][j]);
+                System.out.printf(templateOutputString, array[i][j] + 0.0);
                 System.out.print(" ");
             }
             System.out.println();
