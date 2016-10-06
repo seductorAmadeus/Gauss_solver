@@ -4,11 +4,6 @@ public class GaussSolver {
 
     private static int i, j;
     private static double c, s;
-    private static int maxStrLength = 0;
-
-    public static int getMaxStrLength() {
-        return maxStrLength;
-    }
 
     public static void runGaussMethod(int n, double[][] matrix, double[] vectorOfValues, double[] vectorOfSolutions) {
         int k = 0;
@@ -28,9 +23,6 @@ public class GaussSolver {
 
                 for (; j < n; j++) {
                     matrix[i][j] = matrix[i][j] - c * matrix[k][j];
-                    if (String.valueOf(matrix[i][j]).length() > maxStrLength) {
-                        maxStrLength = String.valueOf(matrix[i][j]).length();
-                    }
                 }
                 vectorOfValues[i] = vectorOfValues[i] - c * vectorOfValues[k];
             }

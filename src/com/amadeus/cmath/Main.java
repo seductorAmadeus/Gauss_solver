@@ -8,6 +8,7 @@ public class Main {
     private static Boolean actionWasSuccessfully = false;
     private static Input input;
     private static MatrixPrinter matrixPrinter;
+    private static int maxStrLength = 0;
 
     public static void main(String[] args) {
         input = new Input(type);
@@ -47,19 +48,30 @@ public class Main {
 
         } else {
 
-            GaussSolver.runGaussMethod(InputData.getDimensionOfMatrix(),InputData.getMatrix(), InputData.getVectorOfValues(), OutputData.getVectorOfSolutions());
+            GaussSolver.runGaussMethod(InputData.getDimensionOfMatrix(), InputData.getMatrix(), InputData.getVectorOfValues(), OutputData.getVectorOfSolutions());
             GaussSolver.getVectorOfResiduals(OutputData.getVectorOfResiduals(), InputData.getOriginalVectorOfValues(), InputData.getOriginalMatrix(), OutputData.getVectorOfSolutions());
 
             System.out.println("\nTriangular matrix of system: ");
-            matrixPrinter.printTriangularMatrix(OutputData.getTriangularMatrix(), String.valueOf(Math.round(GaussSolver.getMaxStrLength())));
+            matrixPrinter.printTriangularMatrix(OutputData.getTriangularMatrix(), String.valueOf(Math.round(getMaxStrLength(OutputData.getTriangularMatrix()))));
             System.out.println("Determinant: " + OutputData.getDeterminant());
             System.out.println("\nVector of solutions: ");
-            matrixPrinter.printVector(OutputData.getVectorOfSolutions(), String.valueOf(Math.round((GaussSolver.getMaxStrLength()))), "f");
+            matrixPrinter.printVector(OutputData.getVectorOfSolutions(), String.valueOf(Math.round((getMaxStrLength(OutputData.getTriangularMatrix())))), "f");
             System.out.println("Vector of residuals: ");
-            matrixPrinter.printVector(OutputData.getVectorOfResiduals(), String.valueOf(Math.round((GaussSolver.getMaxStrLength()))), "e");
+            matrixPrinter.printVector(OutputData.getVectorOfResiduals(), String.valueOf(Math.round((getMaxStrLength(OutputData.getTriangularMatrix())))), "e");
             calculationWasSuccessfully = true;
             dataEntered = false;
         }
+    }
+
+    private static int getMaxStrLength(double[][] matrix) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                if (String.valueOf(matrix[i][j]).length() > maxStrLength) {
+                    maxStrLength = String.valueOf(matrix[i][j]).length();
+                }
+            }
+        }
+        return maxStrLength;
     }
 
     private static void changeInputType() {
