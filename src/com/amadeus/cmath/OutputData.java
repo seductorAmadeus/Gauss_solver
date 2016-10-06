@@ -3,7 +3,7 @@ package com.amadeus.cmath;
 class OutputData {
     private static double[][] triangularMatrix;
     private static double[] vectorOfSolutions, vectorOfResiduals;
-
+    private static double determinant;
     public static void setNewOutputData(double[][] matrix) {
         triangularMatrix = matrix;
         createVectorOfSolutions(matrix[0].length);
@@ -14,12 +14,18 @@ class OutputData {
         vectorOfResiduals = vector;
     }
 
+    public static void setDeterminant(double det) {
+        determinant = det;
+    }
     private static void createVectorOfSolutions(int n) {
         vectorOfSolutions = new double[n];
     }
 
     public static double[] getVectorOfSolutions() {
         return vectorOfSolutions;
+    }
+    public static double getDeterminant() {
+        return determinant;
     }
 
     public static double[][] getTriangularMatrix() {

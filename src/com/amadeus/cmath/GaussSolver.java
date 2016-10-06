@@ -6,6 +6,7 @@ public class GaussSolver {
     private static double c, s;
     private static int maxStrLength = 0;
     private static double[] vectorOfSolutions;
+
     public static int getMaxStrLength() {
         return maxStrLength;
     }
@@ -36,7 +37,7 @@ public class GaussSolver {
             }
         }
         OutputData.setNewOutputData(matrix.clone());
-
+        OutputData.setDeterminant(calculateDeterminant(matrix));
         vectorOfSolutions = OutputData.getVectorOfSolutions();
 
         vectorOfSolutions[n - 1] = vectorOfValues[n - 1] / matrix[n - 1][n - 1];
@@ -58,6 +59,14 @@ public class GaussSolver {
         }
         OutputData.setVectorOfResiduals(vectorOfResiduals);
 
+    }
+
+    private static double calculateDeterminant(double[][] triangularMatrix) {
+        double determinant = 1;
+        for (int i = 0; i < triangularMatrix[0].length; i++) {
+            determinant *= triangularMatrix[i][i];
+        }
+        return determinant;
     }
 
     private static double getResultOfMultiplication(int n, double[] vectorOfSolutions, double[][] originalMatrix) {

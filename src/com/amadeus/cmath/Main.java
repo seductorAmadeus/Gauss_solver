@@ -43,12 +43,12 @@ public class Main {
 
         } else {
             GaussSolver.runGaussMethod(InputData.getDimensionOfMatrix(),InputData.getMatrix(), InputData.getVectorOfValues());
-
             GaussSolver.getVectorOfResiduals(OutputData.getVectorOfResiduals(), InputData.getOriginalVectorOfValues(), InputData.getOriginalMatrix(), OutputData.getVectorOfSolutions());
 
             System.out.println("\nTriangular matrix of system: ");
             matrixPrinter.printTriangularMatrix(OutputData.getTriangularMatrix(), String.valueOf(Math.round(GaussSolver.getMaxStrLength())));
-            System.out.println("Vector of solutions: ");
+            System.out.println("Determinant: " + OutputData.getDeterminant());
+            System.out.println("\nVector of solutions: ");
             matrixPrinter.printVector(OutputData.getVectorOfSolutions(), String.valueOf(Math.round((GaussSolver.getMaxStrLength()))), "f");
             System.out.println("Vector of residuals: ");
             matrixPrinter.printVector(OutputData.getVectorOfResiduals(), String.valueOf(Math.round((GaussSolver.getMaxStrLength()))), "e");
