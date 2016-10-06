@@ -2,7 +2,7 @@ package com.amadeus.cmath;
 
 public class Main {
 
-    private static InputType type = InputType.RANDOM_COEFFICIENT;
+    private static InputType type = InputType.FILE_INPUT;
     private static Boolean dataEntered = false;
     private static Boolean actionWasSuccessfully = false;
     private static Input input;
@@ -51,7 +51,7 @@ public class Main {
             System.out.println("Vector of solutions: ");
             matrixPrinter.printVector(OutputData.getVectorOfSolutions(), String.valueOf(Math.round((GaussSolver.getMaxStrLength()))), "f");
 
-            GaussSolver.getVectorOfResiduals(OutputData.getVectorOfResiduals(), InputData.getVectorOfValues(), InputData.getMatrix(), OutputData.getVectorOfSolutions());
+            GaussSolver.getVectorOfResiduals(OutputData.getVectorOfResiduals(), InputData.getVectorOfValues(), InputData.getOriginalMatrix(), OutputData.getVectorOfSolutions());
             System.out.println("Vector of residuals: ");
             matrixPrinter.printVector(OutputData.getVectorOfResiduals(), String.valueOf(Math.round((GaussSolver.getMaxStrLength()))), "e");
 
@@ -93,7 +93,7 @@ public class Main {
     private static void enterNewData() {
         input.getMatrix();
         System.out.println("\nAugmented matrix of the system: ");
-        matrixPrinter.printMatrix(InputData.getMatrix(), String.valueOf(Math.round((input.getMaxStrLength()))));
+        matrixPrinter.printMatrix(InputData.getMatrix(), InputData.getVectorOfValues(), String.valueOf(Math.round((input.getMaxStrLength()))));
         dataEntered = true;
     }
 }

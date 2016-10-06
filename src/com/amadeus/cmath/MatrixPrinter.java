@@ -1,7 +1,5 @@
 package com.amadeus.cmath;
 
-import java.math.BigDecimal;
-
 public class MatrixPrinter {
 
     private int PRECISION = 4;
@@ -10,7 +8,6 @@ public class MatrixPrinter {
     public void printVector(double[] array, String maxSize, String format) {
         templateOutputString = templateOutputString.replace("#", maxSize).replace("&", String.valueOf(PRECISION)).replace("f", format);
         for (int i = 0; i < array.length; i++) {
-            //System.out.println(array[i]);
             System.out.printf(templateOutputString, array[i]);
             System.out.println();
         }
@@ -35,11 +32,15 @@ public class MatrixPrinter {
                 "Enter menu item:\n");
     }
 
-    public void printMatrix(double[][] array, String maxSize) {
+    public void printMatrix(double[][] array, double[] vectorOfValues, String maxSize) {
         templateOutputString = templateOutputString.replace("#", maxSize).replace("&", String.valueOf(PRECISION));
         for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array[0].length; j++) {
-                System.out.printf(templateOutputString, array[i][j]);
+            for (int j = 0; j < array[0].length + 1; j++) {
+                if (j + 1 >= array[0].length + 1) {
+                    System.out.printf(templateOutputString, vectorOfValues[i]);
+                } else {
+                    System.out.printf(templateOutputString, array[i][j]);
+                }
                 System.out.print(" ");
             }
             System.out.println();
@@ -50,7 +51,7 @@ public class MatrixPrinter {
     public void printTriangularMatrix(double[][] array, String maxSize) {
         templateOutputString = templateOutputString.replace("#", maxSize).replace("&", String.valueOf(PRECISION));
         for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array[0].length - 1; j++) {
+            for (int j = 0; j < array[0].length; j++) {
                 System.out.printf(templateOutputString, array[i][j]);
                 System.out.print(" ");
             }
