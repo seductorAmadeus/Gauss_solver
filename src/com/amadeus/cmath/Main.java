@@ -2,7 +2,7 @@ package com.amadeus.cmath;
 
 public class Main {
 
-    private static InputType type = InputType.RANDOM_COEFFICIENT;
+    private static InputType type = InputType.FILE_INPUT;
     private static Boolean dataEntered = false;
     private static Boolean actionWasSuccessfully = false;
     private static Input input;
@@ -42,16 +42,13 @@ public class Main {
             System.out.println("The input data is not found, type the new data \n");
 
         } else {
+            GaussSolver.runGaussMethod(InputData.getDimensionOfMatrix(),InputData.getMatrix(), InputData.getVectorOfValues());
+            GaussSolver.getVectorOfResiduals(OutputData.getVectorOfResiduals(), InputData.getOriginalVectorOfValues(), InputData.getOriginalMatrix(), OutputData.getVectorOfSolutions());
 
-            GaussSolver.getTriangularMatrix(InputData.getDimensionOfMatrix(), InputData.getMatrix(), InputData.getVectorOfValues());
             System.out.println("\nTriangular matrix of system: ");
             matrixPrinter.printTriangularMatrix(OutputData.getTriangularMatrix(), String.valueOf(Math.round(GaussSolver.getMaxStrLength())));
-
-            GaussSolver.getVectorOfSolutions(InputData.getDimensionOfMatrix(), OutputData.getVectorOfSolutions(), OutputData.getTriangularMatrix(), InputData.getVectorOfValues());
             System.out.println("Vector of solutions: ");
             matrixPrinter.printVector(OutputData.getVectorOfSolutions(), String.valueOf(Math.round((GaussSolver.getMaxStrLength()))), "f");
-
-            GaussSolver.getVectorOfResiduals(OutputData.getVectorOfResiduals(), InputData.getOriginalVectorOfValues(), InputData.getOriginalMatrix(), OutputData.getVectorOfSolutions());
             System.out.println("Vector of residuals: ");
             matrixPrinter.printVector(OutputData.getVectorOfResiduals(), String.valueOf(Math.round((GaussSolver.getMaxStrLength()))), "e");
 

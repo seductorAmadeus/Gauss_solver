@@ -5,13 +5,12 @@ public class GaussSolver {
     private static int i, j;
     private static double c, s;
     private static int maxStrLength = 0;
-
+    private static double[] vectorOfSolutions;
     public static int getMaxStrLength() {
         return maxStrLength;
     }
 
-    public static void getTriangularMatrix(int n, double[][] matrix, double[] vectorOfValues) {
-
+    public static void runGaussMethod(int n, double[][] matrix, double[] vectorOfValues) {
         int k = 0;
         for (; k < n - 1; k++) {
 
@@ -39,6 +38,19 @@ public class GaussSolver {
         OutputData.setTriangularMatrix(matrix.clone());
         OutputData.createVectorOfSolutions(n);
         OutputData.createVectorOfResiduals(n);
+
+        vectorOfSolutions = OutputData.getVectorOfSolutions();
+
+        vectorOfSolutions[n - 1] = vectorOfValues[n - 1] / matrix[n - 1][n - 1];
+        i = n - 1;
+        for (; i > -1; i--) {
+            j = i + 1;
+            s = 0;
+            for (; j < n; j++) {
+                s = s + matrix[i][j] * vectorOfSolutions[j];
+            }
+            vectorOfSolutions[i] = (vectorOfValues[i] - s) / matrix[i][i];
+        }
     }
 
     public static void getVectorOfResiduals(double[] vectorOfResiduals, double[] vectorOfValues, double[][] matrix, double[] vectorOfSolutions) {
@@ -56,20 +68,6 @@ public class GaussSolver {
             sum += vectorOfSolutions[i] * originalMatrix[n][i];
         }
         return sum;
-    }
-
-    public static void getVectorOfSolutions(int n, double[] vectorOfSolutions, double[][] matrix, double[] vectorOfValues) {
-        vectorOfSolutions[n - 1] = vectorOfValues[n - 1] / matrix[n - 1][n - 1];
-        i = n - 1;
-        for (; i > -1; i--) {
-            j = i + 1;
-            s = 0;
-            for (; j < n; j++) {
-                s = s + matrix[i][j] * vectorOfSolutions[j];
-            }
-            vectorOfSolutions[i] = (vectorOfValues[i] - s) / matrix[i][i];
-        }
-        OutputData.setVectorOfSolutions(vectorOfSolutions);
     }
 
     private static double[][] permutationEquations(double[][] matrix, int k, int n) {

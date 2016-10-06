@@ -23,7 +23,7 @@ class OutputData {
     }
 
     public static double[] getVectorOfSolutions() {
-        return vectorOfSolutions.clone();
+        return vectorOfSolutions;
 
     }
 

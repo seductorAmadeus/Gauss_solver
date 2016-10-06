@@ -3,7 +3,7 @@ package com.amadeus.cmath;
 
 class InputData {
     private static double[][] matrix, originalMatrix;
-    private static double[] vectorOfValues, orinalVectorOfValues;
+    private static double[] vectorOfValues, originalVectorOfValues;
     private static int n; // dimension
 
     public static void fillMatrix(int i, int j, double value) {
@@ -27,7 +27,7 @@ class InputData {
     }
 
     public static double[] getOriginalVectorOfValues() {
-        return orinalVectorOfValues.clone();
+        return originalVectorOfValues.clone();
     }
 
     public static void fillVectorOfValues(int i, double value) {
@@ -45,7 +45,7 @@ class InputData {
 
     public static void createVectorOfValues() {
         vectorOfValues = new double[matrix.length];
-        orinalVectorOfValues = new double[matrix.length];
+        originalVectorOfValues = new double[matrix.length];
     }
 
 
@@ -57,7 +57,7 @@ class InputData {
         }
 
         for (int i = 0; i < vectorOfValues.length; i++) {
-            orinalVectorOfValues[i] = vectorOfValues[i];
+            originalVectorOfValues[i] = vectorOfValues[i];
         }
     }
 
