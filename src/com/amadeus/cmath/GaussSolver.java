@@ -50,12 +50,11 @@ public class GaussSolver {
 
     }
 
-    private static double getResultOfMultiplication(int n, double[] vectorOfSolutions, double[][] parityCheckMatrix) { //original matrix
+    private static double getResultOfMultiplication(int n, double[] vectorOfSolutions, double[][] originalMatrix) {
         double sum = 0.0;
-        for (int i = 0; i < parityCheckMatrix[0].length - 1; i++) {
-            sum += vectorOfSolutions[i] * parityCheckMatrix[n][i];
+        for (int i = 0; i < originalMatrix[0].length; i++) {
+            sum += vectorOfSolutions[i] * originalMatrix[n][i];
         }
-        //System.out.println(sum);
         return sum;
     }
 
