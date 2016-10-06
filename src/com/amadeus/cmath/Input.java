@@ -155,7 +155,6 @@ public class Input {
 
     public void getMatrix() {
         int i, j;
-
         while (true) {
 
             try {
@@ -178,7 +177,7 @@ public class Input {
             }
 
         }
-
+        InputData.createVectorOfValues();
         for (i = 0; i < n; i++) {
             if (type == InputType.RANDOM_COEFFICIENT) {
                 getStringOfRandomValues();
@@ -186,10 +185,13 @@ public class Input {
                 getStringValues();
             }
             for (j = 0; j < n + 1; j++) {
-                InputData.fillMatrix(i, j, subMatrix[j]);
+                if (j + 1 >= n + 1) {
+                    InputData.fillVectorOfValues(i, subMatrix[j]);
+                } else {
+                    InputData.fillMatrix(i, j, subMatrix[j]);
+                }
             }
         }
-        InputData.createVectorOfValues();
-        InputData.allocateVectorOfValues();
+        InputData.copyMatrix();
     }
 }

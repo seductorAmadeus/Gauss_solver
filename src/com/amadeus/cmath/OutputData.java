@@ -1,5 +1,7 @@
 package com.amadeus.cmath;
 
+import java.util.Objects;
+
 class OutputData {
     private static double[][] triangularMatrix;
     private static double[] vectorOfSolutions, vectorOfResiduals;
@@ -7,9 +9,11 @@ class OutputData {
     public static void setTriangularMatrix(double[][] matrix) {
         triangularMatrix = matrix;
     }
+
     public static void setVectorOfResiduals(double[] vector) {
         vectorOfResiduals = vector;
     }
+
     public static void setVectorOfSolutions(double[] vector) {
         vectorOfSolutions = vector;
     }
@@ -20,6 +24,7 @@ class OutputData {
 
     public static double[] getVectorOfSolutions() {
         return vectorOfSolutions.clone();
+
     }
 
     public static double[][] getTriangularMatrix() {
@@ -29,6 +34,7 @@ class OutputData {
     public static double[] getVectorOfResiduals() {
         return vectorOfResiduals.clone();
     }
+
     public static void createVectorOfResiduals(int n) {
         vectorOfResiduals = new double[n];
     }
