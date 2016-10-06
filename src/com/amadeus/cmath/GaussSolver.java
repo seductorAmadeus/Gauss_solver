@@ -5,13 +5,12 @@ public class GaussSolver {
     private static int i, j;
     private static double c, s;
     private static int maxStrLength = 0;
-    private static double[] vectorOfSolutions;
 
     public static int getMaxStrLength() {
         return maxStrLength;
     }
 
-    public static void runGaussMethod(int n, double[][] matrix, double[] vectorOfValues) {
+    public static void runGaussMethod(int n, double[][] matrix, double[] vectorOfValues, double[] vectorOfSolutions) {
         int k = 0;
         for (; k < n - 1; k++) {
 
@@ -36,9 +35,9 @@ public class GaussSolver {
                 vectorOfValues[i] = vectorOfValues[i] - c * vectorOfValues[k];
             }
         }
-        OutputData.setNewOutputData(matrix.clone());
+
+        OutputData.setTriangularMatrix(matrix.clone());
         OutputData.setDeterminant(calculateDeterminant(matrix));
-        vectorOfSolutions = OutputData.getVectorOfSolutions();
 
         vectorOfSolutions[n - 1] = vectorOfValues[n - 1] / matrix[n - 1][n - 1];
         i = n - 1;

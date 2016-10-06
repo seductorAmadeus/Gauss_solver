@@ -4,6 +4,7 @@ public class Main {
 
     private static InputType type = InputType.FILE_INPUT;
     private static Boolean dataEntered = false;
+    private static Boolean calculationWasSuccessfully = false;
     private static Boolean actionWasSuccessfully = false;
     private static Input input;
     private static MatrixPrinter matrixPrinter;
@@ -24,6 +25,9 @@ public class Main {
                 break;
                 case 3: {
                     runGaussSolver();
+                    if (calculationWasSuccessfully) {
+                        Runtime.getRuntime().exit(0);
+                    }
                 }
                 break;
                 case 4: {
@@ -42,7 +46,8 @@ public class Main {
             System.out.println("The input data is not found, type the new data \n");
 
         } else {
-            GaussSolver.runGaussMethod(InputData.getDimensionOfMatrix(),InputData.getMatrix(), InputData.getVectorOfValues());
+
+            GaussSolver.runGaussMethod(InputData.getDimensionOfMatrix(),InputData.getMatrix(), InputData.getVectorOfValues(), OutputData.getVectorOfSolutions());
             GaussSolver.getVectorOfResiduals(OutputData.getVectorOfResiduals(), InputData.getOriginalVectorOfValues(), InputData.getOriginalMatrix(), OutputData.getVectorOfSolutions());
 
             System.out.println("\nTriangular matrix of system: ");
@@ -52,7 +57,7 @@ public class Main {
             matrixPrinter.printVector(OutputData.getVectorOfSolutions(), String.valueOf(Math.round((GaussSolver.getMaxStrLength()))), "f");
             System.out.println("Vector of residuals: ");
             matrixPrinter.printVector(OutputData.getVectorOfResiduals(), String.valueOf(Math.round((GaussSolver.getMaxStrLength()))), "e");
-
+            calculationWasSuccessfully = true;
             dataEntered = false;
         }
     }

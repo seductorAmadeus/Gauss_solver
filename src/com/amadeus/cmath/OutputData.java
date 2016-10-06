@@ -1,13 +1,17 @@
 package com.amadeus.cmath;
 
 class OutputData {
+
+    static {
+       createVectorOfSolutions(InputData.getDimensionOfMatrix());
+       createVectorOfResiduals(InputData.getDimensionOfMatrix());
+    }
+
     private static double[][] triangularMatrix;
     private static double[] vectorOfSolutions, vectorOfResiduals;
     private static double determinant;
-    public static void setNewOutputData(double[][] matrix) {
+    public static void setTriangularMatrix(double[][] matrix) {
         triangularMatrix = matrix;
-        createVectorOfSolutions(matrix[0].length);
-        createVectorOfResiduals(matrix[0].length);
     }
 
     public static void setVectorOfResiduals(double[] vector) {
