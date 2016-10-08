@@ -6,20 +6,13 @@ import java.util.*;
 public class Input {
 
     private InputType type;
-    private int n; // count of rows
+    private int n;
     private Scanner in, menuItemIn;
     private Double[] subMatrix;
     private Boolean actionWasSuccessfully = false;
     private Random random;
 
-    private static String filePath = "Please, enter the full (txt) file path: \n",
-            filePathExp = "File not found, repeat, please \n",
-            inputLine = "Enter the line: \n",
-            inputLineFormatExp = "Format error-line, retype the line: \n",
-            arrayIndexOutOfBoundsExp = "Invalid number of elements in the line, retype the line \n",
-            inputLineSomeExp = "Error reading line, retype the line:  \n",
-            inputDimensionMatrix = "Enter dimension of the matrix: \n",
-            inputValueFormatExp = "Input error, re-enter the positive (integer) dimension of the matrix: \n";
+    private static String filePath, filePathExp, inputLine, inputLineFormatExp, arrayIndexOutOfBoundsExp, inputLineSomeExp, inputDimensionMatrix, inputDimensionFormatExp;
 
     Input(InputType inputType) {
 
@@ -27,11 +20,13 @@ public class Input {
             case FILE_INPUT: {
                 type = InputType.FILE_INPUT;
                 inputLine = "";
-                inputLineFormatExp = "Format error-line, change the line in the file. \n";
-                arrayIndexOutOfBoundsExp = "Invalid number of elements in the line, change the line in the file. \n";
-                inputLineSomeExp = "Error reading line, change the line in the file.  \n";
+                filePath = "Please, enter the full (txt) file path: \n";
+                filePathExp = "File not found, repeat, please: \n";
+                inputLineFormatExp = "Format error-line, change the line in the file: \n";
+                arrayIndexOutOfBoundsExp = "Invalid number of elements in the line, change the line in the file: \n";
+                inputLineSomeExp = "Error reading line, change the line in the file:  \n";
                 inputDimensionMatrix = "";
-                inputValueFormatExp = "Input error, change the line in the file. \n ";
+                inputDimensionFormatExp = "Input error, change integer dimension (1 < n <= 20) of the matrix in the file: \n";
 
                /* while (true) {
                     System.out.print(filePath);
@@ -57,13 +52,19 @@ public class Input {
                 arrayIndexOutOfBoundsExp = "Invalid number of elements in the line, retype the line \n";
                 inputLineSomeExp = "Error reading line, retype the line:  \n";
                 inputDimensionMatrix = "Enter dimension of the matrix: \n";
-                inputValueFormatExp = "Input error, re-enter the positive (integer) dimension of the matrix: \n";
+                inputDimensionFormatExp = "Input error, re-enter the positive integer dimension (1 < n <= 20) of the matrix : \n";
                 in = new Scanner(System.in);
                 random = new Random();
             }
             break;
             case CMD_INPUT: {
                 type = InputType.CMD_INPUT;
+                inputLine = "Enter the line: \n";
+                inputLineFormatExp = "Format error-line, retype the line: \n";
+                arrayIndexOutOfBoundsExp = "Invalid number of elements in the line, retype the line \n";
+                inputLineSomeExp = "Error reading line, retype the line:  \n";
+                inputDimensionMatrix = "Enter dimension of the matrix: \n";
+                inputDimensionFormatExp = "Input error, re-enter the positive integer dimension (1 < n <= 20) of the matrix : \n";
                 in = new Scanner(System.in);
             }
             break;
@@ -159,7 +160,7 @@ public class Input {
                 break;
 
             } catch (NumberFormatException exp) {
-                System.out.print(inputValueFormatExp);
+                System.out.print(inputDimensionFormatExp);
                 if (type == InputType.FILE_INPUT) {
                     Runtime.getRuntime().exit(1);
                 }

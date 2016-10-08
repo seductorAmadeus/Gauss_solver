@@ -2,7 +2,7 @@ package com.amadeus.cmath;
 
 public class MatrixPrinter {
 
-    private int PRECISION = 4;
+    private int PRECISION = 3;
     private String templateOutputString = "%#.&f";
 
     public void printVector(double[] array, String maxSize, String format) {
@@ -17,18 +17,18 @@ public class MatrixPrinter {
     public void printMainMenu(InputType type) {
         System.out.println("Input mode = " +
                 type.getName() + "\n" +
-                "1. Change input type:\n" +
-                "2. Enter new data\n" +
-                "3. Run Gauss method\n" +
-                "4. Exit\n" +
+                "1 : Change input type:\n" +
+                "2 : Enter new data\n" +
+                "3 : Run Gauss method\n" +
+                "4 : Exit\n" +
                 "Enter menu item:\n");
 
     }
 
     public void printSideMenu() {
-        System.out.println("1. Input from the command line \n" +
-                "2. Input from the (txt) file \n" +
-                "3. Fill the matrix with random coefficients \n" +
+        System.out.println("1 : Input from the command line \n" +
+                "2 : Input from the (txt) file \n" +
+                "3 : Fill the matrix with random coefficients \n" +
                 "Enter menu item:\n");
     }
 

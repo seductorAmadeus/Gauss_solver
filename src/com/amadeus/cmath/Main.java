@@ -36,7 +36,7 @@ public class Main {
                 }
                 break;
                 default:
-                    System.out.println("Re-enter menu item, please: ");
+                    System.out.println("Re-enter menu item, please\n");
             }
         }
     }
@@ -44,7 +44,7 @@ public class Main {
     private static void runGaussSolver() {
 
         if (!dataEntered) {
-            System.out.println("The input data is not found, type the new data \n");
+            System.out.println("The input data is not found; please, enter new data \n");
 
         } else {
 
@@ -95,7 +95,7 @@ public class Main {
                 }
                 break;
                 default:
-                    break;
+                    System.out.println("Re-enter menu item, please\n");
             }
             if (actionWasSuccessfully) {
                 input = new Input(type);
@@ -108,7 +108,7 @@ public class Main {
     private static void enterNewData() {
         input.getMatrix();
         System.out.println("\nAugmented matrix of the system: ");
-        matrixPrinter.printMatrix(InputData.getMatrix(), InputData.getVectorOfValues(), String.valueOf(Math.round((input.getMaxStrLength()))));
+        matrixPrinter.printMatrix(InputData.getMatrix(), InputData.getVectorOfValues(), String.valueOf(Math.round((getMaxStrLength(InputData.getOriginalMatrix())*1.8))));
         dataEntered = true;
     }
 }
