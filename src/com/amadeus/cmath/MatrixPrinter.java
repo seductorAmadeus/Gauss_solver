@@ -5,6 +5,8 @@ public class MatrixPrinter {
     private int PRECISION = 3;
     private String templateOutputString = "%#.&f";
 
+    public int getPRECISION() { return PRECISION;}
+
     public void printVector(double[] array, String maxSize, String format) {
         templateOutputString = templateOutputString.replace("#", maxSize).replace("&", String.valueOf(PRECISION)).replace("f", format);
         for (int i = 0; i < array.length; i++) {
