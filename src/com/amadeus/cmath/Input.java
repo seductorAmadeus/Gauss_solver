@@ -28,7 +28,7 @@ public class Input {
                 inputDimensionMatrix = "";
                 inputDimensionFormatExp = "Input error, change integer dimension (1 < n <= 20) of the matrix in the file: \n";
 
-               /* while (true) {
+                while (true) {
                     System.out.print(filePath);
                     try {
                         Scanner filepathIn = new Scanner(System.in);
@@ -37,11 +37,6 @@ public class Input {
                     } catch (FileNotFoundException exp) {
                         System.out.print(filePathExp);
                     }
-                }*/
-                try {
-                    in = new Scanner(new File("C:\\Users\\admin\\Desktop\\LabsCMath\\example.txt")); // убрать
-                } catch (FileNotFoundException exp) {
-                    System.out.print(filePathExp);
                 }
             }
             break;
