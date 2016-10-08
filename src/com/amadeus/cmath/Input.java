@@ -42,24 +42,24 @@ public class Input {
             break;
             case RANDOM_COEFFICIENT: {
                 type = InputType.RANDOM_COEFFICIENT;
-                inputLine = "Enter the line: \n";
+                inputLine = "Enter the line";
                 inputLineFormatExp = "Format error-line, retype the line: \n";
                 arrayIndexOutOfBoundsExp = "Invalid number of elements in the line, retype the line \n";
                 inputLineSomeExp = "Error reading line, retype the line:  \n";
                 inputDimensionMatrix = "Enter dimension of the matrix: \n";
-                inputDimensionFormatExp = "Input error, re-enter the positive integer dimension (1 < n <= 20) of the matrix : \n";
+                inputDimensionFormatExp = "Input error, re-enter the positive integer dimension (1 < n <= 20) of the matrix \n";
                 in = new Scanner(System.in);
                 random = new Random();
             }
             break;
             case CMD_INPUT: {
                 type = InputType.CMD_INPUT;
-                inputLine = "Enter the line: \n";
+                inputLine = "Enter the line";
                 inputLineFormatExp = "Format error-line, retype the line: \n";
                 arrayIndexOutOfBoundsExp = "Invalid number of elements in the line, retype the line \n";
                 inputLineSomeExp = "Error reading line, retype the line:  \n";
                 inputDimensionMatrix = "Enter dimension of the matrix: \n";
-                inputDimensionFormatExp = "Input error, re-enter the positive integer dimension (1 < n <= 20) of the matrix : \n";
+                inputDimensionFormatExp = "Input error, re-enter the positive integer dimension (1 < n <= 20) of the matrix \n";
                 in = new Scanner(System.in);
             }
             break;
@@ -103,7 +103,9 @@ public class Input {
 
         while (true) {
             try {
-                System.out.print(inputLine);
+                if (inputLine.length() != 0) {
+                    System.out.print(inputLine + ", containing " + (n + 1) + " argument the augmented matrix of the system:\n");
+                }
                 someString = in.nextLine();
                 resultString = someString.split(" ");
                 subMatrix = new Double[n + 1];
