@@ -10,8 +10,10 @@ class InputData {
         matrix[i][j] = value;
     }
 
-    public static void setDimensionOfMatrix(int dimension) {
+    public static void createNewMatrices(int dimension) {
         n = dimension;
+        createMatrix();
+        createVectorOfValues();
     }
 
     public static int getDimensionOfMatrix() {
@@ -38,12 +40,12 @@ class InputData {
         return vectorOfValues;
     }
 
-    public static void createMatrix() {
+    private static void createMatrix() {
         matrix = new double[n][n];
         originalMatrix = new double[n][n];
     }
 
-    public static void createVectorOfValues() {
+    private static void createVectorOfValues() {
         vectorOfValues = new double[matrix.length];
         originalVectorOfValues = new double[matrix.length];
     }

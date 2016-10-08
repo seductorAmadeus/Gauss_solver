@@ -11,7 +11,6 @@ public class Input {
     private Double[] subMatrix;
     private Boolean actionWasSuccessfully = false;
     private Random random;
-    private int maxStrLength = 0;
 
     private static String filePath = "Please, enter the full (txt) file path: \n",
             filePathExp = "File not found, repeat, please \n",
@@ -53,6 +52,12 @@ public class Input {
             break;
             case RANDOM_COEFFICIENT: {
                 type = InputType.RANDOM_COEFFICIENT;
+                inputLine = "Enter the line: \n";
+                inputLineFormatExp = "Format error-line, retype the line: \n";
+                arrayIndexOutOfBoundsExp = "Invalid number of elements in the line, retype the line \n";
+                inputLineSomeExp = "Error reading line, retype the line:  \n";
+                inputDimensionMatrix = "Enter dimension of the matrix: \n";
+                inputValueFormatExp = "Input error, re-enter the positive (integer) dimension of the matrix: \n";
                 in = new Scanner(System.in);
                 random = new Random();
             }
@@ -70,18 +75,10 @@ public class Input {
         subMatrix = new Double[n + 1];
 
         for (int i = 0; i < subMatrix.length; i++) {
-
             subMatrix[i] = random.nextDouble() * 100;
-            if (String.valueOf(subMatrix[i]).length() > maxStrLength) {
-                maxStrLength = String.valueOf(subMatrix[i]).length();
-            }
         }
 
         return subMatrix;
-    }
-
-    public int getMaxStrLength() {
-        return maxStrLength;
     }
 
     public Integer getMenuItem() {
@@ -115,13 +112,6 @@ public class Input {
                 resultString = someString.split(" ");
                 subMatrix = new Double[n + 1];
                 for (int k = 0; k < resultString.length; k++) {
-                    if (resultString[k].length() == 0) {
-                        continue;
-                    } else {
-                        if (resultString[k].length() > maxStrLength) {
-                            maxStrLength = resultString[k].length();
-                        }
-                    }
                     subMatrix[i] = Double.valueOf(resultString[k]);
                     i++;
                 }
@@ -165,8 +155,7 @@ public class Input {
                     throw new NumberFormatException();
                 }
 
-                InputData.setDimensionOfMatrix(n);
-                InputData.createMatrix();
+                InputData.createNewMatrices(n);
                 break;
 
             } catch (NumberFormatException exp) {
@@ -177,7 +166,6 @@ public class Input {
             }
 
         }
-        InputData.createVectorOfValues();
         for (i = 0; i < n; i++) {
             if (type == InputType.RANDOM_COEFFICIENT) {
                 getStringOfRandomValues();
