@@ -106,6 +106,7 @@ public class Main {
     }
 
     private static void enterNewData() {
+        input = new Input(type);
         input.getMatrix();
         System.out.println("\nAugmented matrix of the system: ");
         matrixPrinter.printMatrix(InputData.getMatrix(), InputData.getVectorOfValues(), String.valueOf(Math.round((getMaxStrLength(InputData.getOriginalMatrix())*1.8))));
