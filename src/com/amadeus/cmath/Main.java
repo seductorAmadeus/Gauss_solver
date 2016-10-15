@@ -2,13 +2,11 @@ package com.amadeus.cmath;
 
 public class Main {
 
-    private static InputType type = InputType.CMD_INPUT;
+    private static InputType type = InputType.FILE_INPUT;
+    private static Input input = new Input(InputType.CMD_INPUT);
     private static Boolean dataEntered = false;
     private static Boolean calculationWasSuccessfully = false;
-    private static Boolean actionWasSuccessfully = false;
-    private static Input input = new Input(InputType.CMD_INPUT);
     private static MatrixPrinter matrixPrinter;
-    private static int maxStrLength = 0;
 
     public static void main(String[] args) {
         matrixPrinter = new MatrixPrinter();
@@ -63,6 +61,7 @@ public class Main {
     }
 
     private static int getMaxStrLength(double[][] matrix) {
+        int maxStrLength = 0;
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[0].length; j++) {
                 if (String.valueOf(matrix[i][j]).length() > maxStrLength) {
@@ -74,6 +73,7 @@ public class Main {
     }
 
     private static void changeInputType() {
+        Boolean actionWasSuccessfully = false;
         while (true) {
             matrixPrinter.printSideMenu();
             switch (input.getMenuItem()) {
@@ -98,7 +98,6 @@ public class Main {
             }
             if (actionWasSuccessfully) {
                 dataEntered = false;
-                actionWasSuccessfully = false;
                 break;
             }
         }

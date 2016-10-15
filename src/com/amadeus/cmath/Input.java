@@ -7,10 +7,8 @@ public class Input {
 
     private InputType type;
     private int n;
-    private Scanner in, menuItemIn;
+    private Scanner in;
     private Double[] subMatrix;
-    private Boolean actionWasSuccessfully = false;
-    private Random random;
 
     private static String filePath, filePathExp, inputLine, inputLineFormatExp, arrayIndexOutOfBoundsExp, inputLineSomeExp, inputDimensionMatrix, inputDimensionFormatExp;
 
@@ -49,7 +47,6 @@ public class Input {
                 inputDimensionMatrix = "Enter dimension of the matrix: \n";
                 inputDimensionFormatExp = "Input error, re-enter the positive integer dimension (1 < n <= 20) of the matrix \n";
                 in = new Scanner(System.in);
-                random = new Random();
             }
             break;
             case CMD_INPUT: {
@@ -69,19 +66,18 @@ public class Input {
     private Double[] getStringOfRandomValues() {
 
         subMatrix = new Double[n + 1];
-
         for (int i = 0; i < subMatrix.length; i++) {
-            subMatrix[i] = random.nextDouble() * 100;
+            subMatrix[i] = Math.random() * 100;
         }
-
         return subMatrix;
     }
 
     public Integer getMenuItem() {
+        Boolean actionWasSuccessfully = false;
         Integer menuItem = null;
         while (true) {
             try {
-                menuItemIn = new Scanner(System.in);
+                Scanner menuItemIn = new Scanner(System.in);
                 menuItem = menuItemIn.nextInt();
                 actionWasSuccessfully = true;
             } catch (NumberFormatException exp) {
@@ -90,7 +86,6 @@ public class Input {
                 System.out.println("Unknown error, please try enter integer value:  ");
             }
             if (actionWasSuccessfully) {
-                actionWasSuccessfully = false;
                 break;
             }
         }
@@ -100,7 +95,6 @@ public class Input {
     private Double[] getStringValues() {
         String someString, resultString[];
         int i = 0;
-
         while (true) {
             try {
                 if (inputLine.length() != 0) {
@@ -113,7 +107,6 @@ public class Input {
                     subMatrix[i] = Double.valueOf(resultString[k]);
                     i++;
                 }
-
                 if (subMatrix[n] == null) {
                     throw new ArrayIndexOutOfBoundsException();
                 }
@@ -136,7 +129,6 @@ public class Input {
             } finally {
                 i = 0;
             }
-
         }
         return subMatrix;
     }
@@ -148,21 +140,17 @@ public class Input {
             try {
                 System.out.print(inputDimensionMatrix);
                 n = Integer.valueOf(in.nextLine());
-
                 if ((n <= 1) || (n > 20)) {
                     throw new NumberFormatException();
                 }
-
                 InputData.createNewMatrices(n);
                 break;
-
             } catch (NumberFormatException exp) {
                 System.out.print(inputDimensionFormatExp);
                 if (type == InputType.FILE_INPUT) {
                     Runtime.getRuntime().exit(1);
                 }
             }
-
         }
         for (i = 0; i < n; i++) {
             if (type == InputType.RANDOM_COEFFICIENT) {
