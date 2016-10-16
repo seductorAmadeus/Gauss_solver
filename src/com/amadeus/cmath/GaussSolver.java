@@ -5,7 +5,9 @@ public class GaussSolver {
     private static int i, j;
     private static double c, s;
 
-    public static void runGaussMethod(int n, double[][] matrix, double[] vectorOfValues, double[] vectorOfSolutions) {
+    public static void runGaussMethod(int n, double[][] originalMatrix, double[] originalVectorOfValues, double[] vectorOfSolutions) {
+        double[][] matrix = initMatrix(originalMatrix);
+        double[] vectorOfValues = initVectorOfValues(originalVectorOfValues);
         int k = 0;
         for (; k < n - 1; k++) {
 
@@ -44,26 +46,12 @@ public class GaussSolver {
     }
 
     public static void getVectorOfResiduals(double[] vectorOfResiduals, double[] originalVectorOfValues, double[][] originalMatrix, double[] vectorOfSolutions) {
-        // save matrix and vectorOfSolutions
-        double[][] matrix = new double[originalMatrix.length][originalMatrix[0].length];
-        double[] vectorOfValues = new double[originalVectorOfValues.length];
-
-        for (int i = 0; i < originalMatrix.length; i++) {
-            for (int j = 0; j < originalMatrix[0].length; j++) {
-                matrix[i][j] = originalMatrix[i][j];
-            }
-        }
-
-        for (int i = 0; i < vectorOfValues.length; i++) {
-            vectorOfValues[i] = originalVectorOfValues[i];
-        }
-
+        double[][] matrix = initMatrix(originalMatrix);
+        double[] vectorOfValues = initVectorOfValues(originalVectorOfValues);
         for (int n = 0; n < vectorOfResiduals.length; n++) {
             vectorOfResiduals[n] = vectorOfValues[n] - getResultOfMultiplication(n, vectorOfSolutions, matrix);
         }
-
         OutputData.setVectorOfResiduals(vectorOfResiduals);
-
     }
 
     private static double calculateDeterminant(double[][] triangularMatrix) {
@@ -97,5 +85,23 @@ public class GaussSolver {
             matrix[k][i] = temp;
         }
         return matrix;
+    }
+
+    private static double[][] initMatrix(double[][] originalMatrix) {
+        double[][] matrix = new double[originalMatrix.length][originalMatrix[0].length];
+        for (int i = 0; i < originalMatrix.length; i++) {
+            for (int j = 0; j < originalMatrix[0].length; j++) {
+                matrix[i][j] = originalMatrix[i][j];
+            }
+        }
+        return matrix;
+    }
+
+    private static double[] initVectorOfValues(double[] originalVectorOfValues) {
+        double[] vectorOfValues = new double[originalVectorOfValues.length];
+        for (int i = 0; i < vectorOfValues.length; i++) {
+            vectorOfValues[i] = originalVectorOfValues[i];
+        }
+        return vectorOfValues;
     }
 }
