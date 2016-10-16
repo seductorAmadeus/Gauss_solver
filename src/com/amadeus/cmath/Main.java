@@ -46,7 +46,7 @@ public class Main {
         } else {
 
             GaussSolver.runGaussMethod(InputData.getDimensionOfMatrix(), InputData.getMatrix(), InputData.getVectorOfValues(), OutputData.getVectorOfSolutions());
-            GaussSolver.getVectorOfResiduals(OutputData.getVectorOfResiduals(), InputData.getOriginalVectorOfValues(), InputData.getOriginalMatrix(), OutputData.getVectorOfSolutions());
+            GaussSolver.getVectorOfResiduals(OutputData.getVectorOfResiduals(), InputData.getVectorOfValues(), InputData.getMatrix(), OutputData.getVectorOfSolutions());
 
             System.out.println("\nTriangular matrix of system: ");
             matrixPrinter.printTriangularMatrix(OutputData.getTriangularMatrix(), String.valueOf(Math.round(getMaxStrLength(OutputData.getTriangularMatrix()))));
@@ -107,7 +107,7 @@ public class Main {
         input = new Input(type);
         input.getMatrix();
         System.out.println("\nAugmented matrix of the system: ");
-        matrixPrinter.printMatrix(InputData.getMatrix(), InputData.getVectorOfValues(), String.valueOf(Math.round((getMaxStrLength(InputData.getOriginalMatrix()) + matrixPrinter.getPRECISION()))));
+        matrixPrinter.printMatrix(InputData.getMatrix(), InputData.getVectorOfValues(), String.valueOf(Math.round((getMaxStrLength(InputData.getMatrix()) + matrixPrinter.getPRECISION()))));
         dataEntered = true;
     }
 }

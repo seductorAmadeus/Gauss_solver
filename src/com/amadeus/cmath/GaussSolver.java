@@ -43,11 +43,25 @@ public class GaussSolver {
         }
     }
 
-    public static void getVectorOfResiduals(double[] vectorOfResiduals, double[] vectorOfValues, double[][] matrix, double[] vectorOfSolutions) {
+    public static void getVectorOfResiduals(double[] vectorOfResiduals, double[] originalVectorOfValues, double[][] originalMatrix, double[] vectorOfSolutions) {
+        // save matrix and vectorOfSolutions
+        double[][] matrix = new double[originalMatrix.length][originalMatrix[0].length];
+        double[] vectorOfValues = new double[originalVectorOfValues.length];
+
+        for (int i = 0; i < originalMatrix.length; i++) {
+            for (int j = 0; j < originalMatrix[0].length; j++) {
+                matrix[i][j] = originalMatrix[i][j];
+            }
+        }
+
+        for (int i = 0; i < vectorOfValues.length; i++) {
+            vectorOfValues[i] = originalVectorOfValues[i];
+        }
 
         for (int n = 0; n < vectorOfResiduals.length; n++) {
             vectorOfResiduals[n] = vectorOfValues[n] - getResultOfMultiplication(n, vectorOfSolutions, matrix);
         }
+
         OutputData.setVectorOfResiduals(vectorOfResiduals);
 
     }
