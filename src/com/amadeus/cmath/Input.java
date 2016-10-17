@@ -133,7 +133,7 @@ public class Input {
         return subMatrix;
     }
 
-    public void getMatrix() {
+    public void getInputData() {
         int i, j;
         while (true) {
 

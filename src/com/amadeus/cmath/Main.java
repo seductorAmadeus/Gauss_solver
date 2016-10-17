@@ -82,7 +82,7 @@ public class Main {
 
     private static void enterNewData() {
         input = new Input(type);
-        input.getMatrix();
+        input.getInputData();
         MatrixPrinter.printInputData(InputData.dataUnpack());
         dataEntered = true;
     }

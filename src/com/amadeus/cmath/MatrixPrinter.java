@@ -29,22 +29,21 @@ public class MatrixPrinter {
         System.out.println();
     }
 
-    public static void printInputData(ArrayList data) {
-        String maxStringLength = String.valueOf(getMaxStrLength(data));
+    public static void printInputData(ArrayList inputData) {
+        String maxStringLength = String.valueOf(getMaxStrLength(inputData));
         System.out.println("\nAugmented matrix of the system: ");
-        printMatrix((double[][]) data.get(0), (double[]) data.get(1), maxStringLength);
+        printMatrix((double[][]) inputData.get(0), (double[]) inputData.get(1), maxStringLength);
     }
 
-    public static void printOutputData(ArrayList data) {
-        String maxStringLength = String.valueOf(getMaxStrLength(data));
+    public static void printOutputData(ArrayList outputData) {
+        String maxStringLength = String.valueOf(getMaxStrLength(outputData));
         System.out.println("\nTriangular matrix of system: ");
-        printTriangularMatrix((double[][]) data.get(0), maxStringLength);
-        System.out.println("Determinant: " + (double) data.get(3));
+        printTriangularMatrix((double[][]) outputData.get(0), maxStringLength);
+        System.out.println("Determinant: " + (double) outputData.get(3));
         System.out.println("\nVector of solutions: ");
-        printVector((double[]) data.get(1), maxStringLength, "f");
+        printVector((double[]) outputData.get(1), maxStringLength, "f");
         System.out.println("Vector of residuals: ");
-        printVector((double[]) data.get(2), maxStringLength, "e");
-
+        printVector((double[]) outputData.get(2), maxStringLength, "e");
     }
 
     public static void printMainMenu(InputType type) {
