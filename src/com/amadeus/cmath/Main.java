@@ -8,6 +8,7 @@ public class Main {
     private static Boolean calculationWasSuccessfully = false;
 
     public static void main(String[] args) {
+        InputData inputData = null;
         while (true) {
             MatrixPrinter.printMainMenu(type);
             switch (input.getMenuItem()) {
@@ -16,11 +17,11 @@ public class Main {
                 }
                 break;
                 case 2: {
-                    enterNewData();
+                    inputData = getNewData();
                 }
                 break;
                 case 3: {
-                    runGaussSolver();
+                    runGaussSolver(inputData);
                     if (calculationWasSuccessfully) {
                         Runtime.getRuntime().exit(0);
                     }
@@ -36,14 +37,15 @@ public class Main {
         }
     }
 
-    private static void runGaussSolver() {
+    private static void runGaussSolver(InputData inputData) {
 
-        if (!dataEntered) {
+        if (inputData == null || !dataEntered) {
             System.out.println("The input data is not found; please, enter new data \n");
 
         } else {
-            GaussSolver.solve(InputData.dataUnpack());
-            MatrixPrinter.printOutputData(OutputData.dataUnpack());
+            OutputData outputData;
+            outputData = GaussSolver.solve(inputData);
+            MatrixPrinter.printOutputData(outputData);
             calculationWasSuccessfully = true;
             dataEntered = false;
         }
@@ -80,10 +82,11 @@ public class Main {
         }
     }
 
-    private static void enterNewData() {
+    private static InputData getNewData() {
         input = new Input(type);
-        input.getInputData();
-        MatrixPrinter.printInputData(InputData.dataUnpack());
+        InputData inputData = input.getInputData();
+        MatrixPrinter.printInputData(inputData);
         dataEntered = true;
+        return inputData;
     }
 }

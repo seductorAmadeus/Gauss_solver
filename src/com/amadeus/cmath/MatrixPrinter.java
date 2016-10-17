@@ -1,14 +1,25 @@
 package com.amadeus.cmath;
 
-import java.util.ArrayList;
-
 public class MatrixPrinter {
 
     private static int PRECISION = 3;
     private static String templateOutputString = "%#.&f";
 
-    private static int getMaxStrLength(ArrayList data) {
-        double[][] matrix = new double[((double[][]) data.get(0)).length][((double[][]) data.get(0)).length];
+    private static int getMaxStrLength(InputData data) { // cделать один метод
+        double[][] matrix = new double[data.getDimension()][data.getDimension()]; // исправить метод
+        int maxStrLength = 0;
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                if (String.valueOf(matrix[i][j]).length() > maxStrLength) {
+                    maxStrLength = String.valueOf(matrix[i][j]).length();
+                }
+            }
+        }
+        return maxStrLength * PRECISION;
+    }
+
+    private static int getMaxStrLength(OutputData data) {
+        double[][] matrix = new double[data.getTriangularMatrix().length][data.getTriangularMatrix().length]; // исправить метод
         int maxStrLength = 0;
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[0].length; j++) {
@@ -29,21 +40,21 @@ public class MatrixPrinter {
         System.out.println();
     }
 
-    public static void printInputData(ArrayList inputData) {
+    public static void printInputData(InputData inputData) {
         String maxStringLength = String.valueOf(getMaxStrLength(inputData));
         System.out.println("\nAugmented matrix of the system: ");
-        printMatrix((double[][]) inputData.get(0), (double[]) inputData.get(1), maxStringLength);
+        printMatrix(inputData.getMatrix(), inputData.getVectorOfValues(), maxStringLength);
     }
 
-    public static void printOutputData(ArrayList outputData) {
+    public static void printOutputData(OutputData outputData) {
         String maxStringLength = String.valueOf(getMaxStrLength(outputData));
         System.out.println("\nTriangular matrix of system: ");
-        printTriangularMatrix((double[][]) outputData.get(0), maxStringLength);
-        System.out.println("Determinant: " + (double) outputData.get(3));
+        printTriangularMatrix(outputData.getTriangularMatrix(), maxStringLength);
+        System.out.println("Determinant: " + outputData.getDeterminant());
         System.out.println("\nVector of solutions: ");
-        printVector((double[]) outputData.get(1), maxStringLength, "f");
+        printVector(outputData.getVectorOfSolutions(), maxStringLength, "f");
         System.out.println("Vector of residuals: ");
-        printVector((double[]) outputData.get(2), maxStringLength, "e");
+        printVector(outputData.getVectorOfResiduals(), maxStringLength, "e");
     }
 
     public static void printMainMenu(InputType type) {

@@ -1,15 +1,13 @@
 package com.amadeus.cmath;
 
-import java.util.ArrayList;
-
 public class GaussSolver {
 
     private static int i, j;
     private static double c, s;
 
-    public static void solve(ArrayList data) {
-        double[][] matrix = initMatrix((double[][]) data.get(0));
-        double[] vectorOfValues = initVectorOfValues((double[]) data.get(1));
+    public static OutputData solve(InputData data) {
+        double[][] matrix = initMatrix(data.getMatrix());
+        double[] vectorOfValues = initVectorOfValues(data.getVectorOfValues());
         double[] vectorOfSolutions = new double[vectorOfValues.length];
         int n = matrix.length;
         int k = 0;
@@ -44,7 +42,7 @@ public class GaussSolver {
             }
             vectorOfSolutions[i] = (vectorOfValues[i] - s) / matrix[i][i];
         }
-        OutputData.dataPack(matrix, vectorOfSolutions, getVectorOfResiduals(vectorOfValues, matrix, vectorOfSolutions), calculateDeterminant(matrix));
+        return new OutputData(matrix, vectorOfSolutions, getVectorOfResiduals(vectorOfValues, matrix, vectorOfSolutions), calculateDeterminant(matrix));
     }
 
     private static double[] getVectorOfResiduals(double[] originalVectorOfValues, double[][] originalMatrix, double[] vectorOfSolutions) {

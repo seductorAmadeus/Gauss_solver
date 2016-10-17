@@ -133,7 +133,7 @@ public class Input {
         return subMatrix;
     }
 
-    public void getInputData() {
+    public InputData getInputData() {
         int i, j;
         while (true) {
 
@@ -167,6 +167,6 @@ public class Input {
                 }
             }
         }
-        InputData.dataPack(matrix, vectorOfValues);
+        return new InputData(matrix, vectorOfValues);
     }
 }

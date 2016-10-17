@@ -1,14 +1,28 @@
 package com.amadeus.cmath;
 
-import java.util.ArrayList;
-
 class OutputData {
 
     private static double[][] triangularMatrix;
     private static double[] vectorOfSolutions, vectorOfResiduals;
     private static double determinant;
 
-    public static void dataPack(double[][] trMatrix, double[] vOfSolutions, double[] vOfResiduals, double det) {
+    public double getDeterminant() {
+        return determinant;
+    }
+
+    public double[] getVectorOfSolutions() {
+        return vectorOfSolutions;
+    }
+
+    public double[] getVectorOfResiduals() {
+        return vectorOfResiduals;
+    }
+
+    public double[][] getTriangularMatrix() {
+        return triangularMatrix;
+    }
+
+    OutputData(double[][] trMatrix, double[] vOfSolutions, double[] vOfResiduals, double det) {
         triangularMatrix = new double[trMatrix.length][trMatrix[0].length];
         vectorOfSolutions = new double[vOfSolutions.length];
         vectorOfResiduals = new double[vOfResiduals.length];
@@ -26,12 +40,4 @@ class OutputData {
 
     }
 
-    public static ArrayList dataUnpack() {
-        ArrayList data = new ArrayList();
-        data.add(triangularMatrix.clone());
-        data.add(vectorOfSolutions.clone());
-        data.add(vectorOfResiduals.clone());
-        data.add(determinant);
-        return data;
-    }
 }
