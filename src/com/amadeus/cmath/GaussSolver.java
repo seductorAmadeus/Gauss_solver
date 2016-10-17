@@ -1,13 +1,17 @@
 package com.amadeus.cmath;
 
+import java.util.ArrayList;
+
 public class GaussSolver {
 
     private static int i, j;
     private static double c, s;
 
-    public static void runGaussMethod(int n, double[][] originalMatrix, double[] originalVectorOfValues, double[] vectorOfSolutions) {
-        double[][] matrix = initMatrix(originalMatrix);
-        double[] vectorOfValues = initVectorOfValues(originalVectorOfValues);
+    public static void solve(ArrayList data) {
+        double[][] matrix = initMatrix((double[][]) data.get(0));
+        double[] vectorOfValues = initVectorOfValues((double[]) data.get(1));
+        double[] vectorOfSolutions = new double[vectorOfValues.length];
+        int n = matrix.length;
         int k = 0;
         for (; k < n - 1; k++) {
 
@@ -30,9 +34,6 @@ public class GaussSolver {
             }
         }
 
-        OutputData.setTriangularMatrix(matrix.clone());
-        OutputData.setDeterminant(calculateDeterminant(matrix));
-
         vectorOfSolutions[n - 1] = vectorOfValues[n - 1] / matrix[n - 1][n - 1];
         i = n - 1;
         for (; i > -1; i--) {
@@ -43,15 +44,17 @@ public class GaussSolver {
             }
             vectorOfSolutions[i] = (vectorOfValues[i] - s) / matrix[i][i];
         }
+        OutputData.dataPack(matrix, vectorOfSolutions, getVectorOfResiduals(vectorOfValues, matrix, vectorOfSolutions), calculateDeterminant(matrix));
     }
 
-    public static void getVectorOfResiduals(double[] vectorOfResiduals, double[] originalVectorOfValues, double[][] originalMatrix, double[] vectorOfSolutions) {
+    private static double[] getVectorOfResiduals(double[] originalVectorOfValues, double[][] originalMatrix, double[] vectorOfSolutions) {
+        double[] vectorOfResiduals = new double[originalMatrix.length];
         double[][] matrix = initMatrix(originalMatrix);
         double[] vectorOfValues = initVectorOfValues(originalVectorOfValues);
         for (int n = 0; n < vectorOfResiduals.length; n++) {
             vectorOfResiduals[n] = vectorOfValues[n] - getResultOfMultiplication(n, vectorOfSolutions, matrix);
         }
-        OutputData.setVectorOfResiduals(vectorOfResiduals);
+        return vectorOfResiduals;
     }
 
     private static double calculateDeterminant(double[][] triangularMatrix) {

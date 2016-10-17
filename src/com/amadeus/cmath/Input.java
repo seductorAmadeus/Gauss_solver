@@ -9,7 +9,8 @@ public class Input {
     private int n;
     private Scanner in;
     private Double[] subMatrix;
-
+    public static double[] vectorOfValues;
+    public static double[][] matrix;
     private static String filePath, filePathExp, inputLine, inputLineFormatExp, arrayIndexOutOfBoundsExp, inputLineSomeExp, inputDimensionMatrix, inputDimensionFormatExp;
 
     Input(InputType inputType) {
@@ -64,7 +65,6 @@ public class Input {
     }
 
     private Double[] getStringOfRandomValues() {
-
         subMatrix = new Double[n + 1];
         for (int i = 0; i < subMatrix.length; i++) {
             subMatrix[i] = Math.random() * 100;
@@ -143,7 +143,8 @@ public class Input {
                 if ((n <= 1) || (n > 20)) {
                     throw new NumberFormatException();
                 }
-                InputData.createNewMatrices(n);
+                matrix = new double[n][n];
+                vectorOfValues = new double[n];
                 break;
             } catch (NumberFormatException exp) {
                 System.out.print(inputDimensionFormatExp);
@@ -160,11 +161,12 @@ public class Input {
             }
             for (j = 0; j < n + 1; j++) {
                 if (j + 1 >= n + 1) {
-                    InputData.fillVectorOfValues(i, subMatrix[j]);
+                    vectorOfValues[i] = subMatrix[j];
                 } else {
-                    InputData.fillMatrix(i, j, subMatrix[j]);
+                    matrix[i][j] = subMatrix[j];
                 }
             }
         }
+        InputData.dataPack(matrix, vectorOfValues);
     }
 }

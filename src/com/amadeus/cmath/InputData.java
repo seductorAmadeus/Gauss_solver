@@ -1,44 +1,29 @@
 package com.amadeus.cmath;
 
+import java.util.ArrayList;
 
 class InputData {
     private static double[][] matrix;
     private static double[] vectorOfValues;
-    private static int n; // dimension
 
-    public static void fillMatrix(int i, int j, double value) {
-        matrix[i][j] = value;
+    public static void dataPack(double[][] originalMatrix, double[] originalVectorOfValues) {
+        matrix = new double[originalMatrix.length][originalMatrix[0].length];
+        for (int i = 0; i < originalMatrix.length; i++) {
+            for (int j = 0; j < originalMatrix[0].length; j++) {
+                matrix[i][j] = originalMatrix[i][j];
+            }
+        }
+
+        vectorOfValues = new double[originalVectorOfValues.length];
+        for (int i = 0; i < vectorOfValues.length; i++) {
+            vectorOfValues[i] = originalVectorOfValues[i];
+        }
     }
 
-    public static void createNewMatrices(int dimension) {
-        n = dimension;
-        createMatrix();
-        createVectorOfValues();
+    public static ArrayList dataUnpack() {
+        ArrayList data = new ArrayList();
+        data.add(matrix.clone());
+        data.add(vectorOfValues.clone());
+        return data;
     }
-
-    public static int getDimensionOfMatrix() {
-        return n;
-    }
-
-    public static double[][] getMatrix() {
-        return matrix.clone();
-    }
-
-    public static void fillVectorOfValues(int i, double value) {
-        vectorOfValues[i] = value;
-    }
-
-    public static double[] getVectorOfValues() {
-        return vectorOfValues;
-    }
-
-    private static void createMatrix() {
-        matrix = new double[n][n];
-    }
-
-    private static void createVectorOfValues() {
-        vectorOfValues = new double[matrix.length];
-    }
-
-
 }
