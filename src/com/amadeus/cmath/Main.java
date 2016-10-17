@@ -38,7 +38,6 @@ public class Main {
     }
 
     private static void runGaussSolver(InputData inputData) {
-
         if (inputData == null || !dataEntered) {
             System.out.println("The input data is not found; please, enter new data \n");
 
@@ -81,6 +80,7 @@ public class Main {
             }
         }
     }
+
 
     private static InputData getNewData() {
         input = new Input(type);

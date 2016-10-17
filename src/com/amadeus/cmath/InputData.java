@@ -3,7 +3,7 @@ package com.amadeus.cmath;
 class InputData {
     private static double[][] matrix;
     private static double[] vectorOfValues;
-    private static int n;
+    private static int maxNumSize;
 
     InputData(double[][] originalMatrix, double[] originalVectorOfValues) {
         matrix = new double[originalMatrix.length][originalMatrix[0].length];
@@ -17,7 +17,8 @@ class InputData {
         for (int i = 0; i < vectorOfValues.length; i++) {
             vectorOfValues[i] = originalVectorOfValues[i];
         }
-        n = matrix.length;
+
+        maxNumSize = getMaxNumSize(matrix);
     }
 
     public double[] getVectorOfValues() {
@@ -28,8 +29,18 @@ class InputData {
         return matrix.clone();
     }
 
-    public int getDimension() {
-        return n;
+    public int getMaxNumSize() {
+        return maxNumSize;
     }
 
+    private int getMaxNumSize(double[][] matrix) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                if (String.valueOf(matrix[i][j]).length() > maxNumSize) {
+                    maxNumSize = String.valueOf(matrix[i][j]).length();
+                }
+            }
+        }
+        return Math.round(maxNumSize / 2);
+    }
 }

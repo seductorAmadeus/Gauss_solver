@@ -3,35 +3,9 @@ package com.amadeus.cmath;
 public class MatrixPrinter {
 
     private static int PRECISION = 3;
-    private static String templateOutputString = "%#.&f";
-
-    private static int getMaxStrLength(InputData data) { // cделать один метод
-        double[][] matrix = new double[data.getDimension()][data.getDimension()]; // исправить метод
-        int maxStrLength = 0;
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[0].length; j++) {
-                if (String.valueOf(matrix[i][j]).length() > maxStrLength) {
-                    maxStrLength = String.valueOf(matrix[i][j]).length();
-                }
-            }
-        }
-        return maxStrLength * PRECISION;
-    }
-
-    private static int getMaxStrLength(OutputData data) {
-        double[][] matrix = new double[data.getTriangularMatrix().length][data.getTriangularMatrix().length]; // исправить метод
-        int maxStrLength = 0;
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[0].length; j++) {
-                if (String.valueOf(matrix[i][j]).length() > maxStrLength) {
-                    maxStrLength = String.valueOf(matrix[i][j]).length();
-                }
-            }
-        }
-        return maxStrLength * PRECISION;
-    }
 
     private static void printVector(double[] array, String maxSize, String format) {
+        String templateOutputString = "%#.&f";
         templateOutputString = templateOutputString.replace("#", maxSize).replace("&", String.valueOf(PRECISION)).replace("f", format);
         for (int i = 0; i < array.length; i++) {
             System.out.printf(templateOutputString, array[i] + 0.0);
@@ -41,20 +15,20 @@ public class MatrixPrinter {
     }
 
     public static void printInputData(InputData inputData) {
-        String maxStringLength = String.valueOf(getMaxStrLength(inputData));
+        String maxNumSize = String.valueOf(inputData.getMaxNumSize() * PRECISION);
         System.out.println("\nAugmented matrix of the system: ");
-        printMatrix(inputData.getMatrix(), inputData.getVectorOfValues(), maxStringLength);
+        printMatrix(inputData.getMatrix(), inputData.getVectorOfValues(), maxNumSize);
     }
 
     public static void printOutputData(OutputData outputData) {
-        String maxStringLength = String.valueOf(getMaxStrLength(outputData));
+        String maxNumSize = String.valueOf(outputData.getMaxNumSize());
         System.out.println("\nTriangular matrix of system: ");
-        printTriangularMatrix(outputData.getTriangularMatrix(), maxStringLength);
+        printTriangularMatrix(outputData.getTriangularMatrix(), maxNumSize);
         System.out.println("Determinant: " + outputData.getDeterminant());
         System.out.println("\nVector of solutions: ");
-        printVector(outputData.getVectorOfSolutions(), maxStringLength, "f");
+        printVector(outputData.getVectorOfSolutions(), maxNumSize, "f");
         System.out.println("Vector of residuals: ");
-        printVector(outputData.getVectorOfResiduals(), maxStringLength, "e");
+        printVector(outputData.getVectorOfResiduals(), maxNumSize, "e");
     }
 
     public static void printMainMenu(InputType type) {
@@ -76,6 +50,7 @@ public class MatrixPrinter {
     }
 
     private static void printMatrix(double[][] array, double[] vectorOfValues, String maxSize) {
+        String templateOutputString = "%#.&f";
         templateOutputString = templateOutputString.replace("#", maxSize).replace("&", String.valueOf(PRECISION));
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[0].length + 1; j++) {
@@ -92,6 +67,7 @@ public class MatrixPrinter {
     }
 
     private static void printTriangularMatrix(double[][] array, String maxSize) {
+        String templateOutputString = "%#.&f";
         templateOutputString = templateOutputString.replace("#", maxSize).replace("&", String.valueOf(PRECISION));
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[0].length; j++) {

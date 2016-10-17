@@ -5,6 +5,7 @@ class OutputData {
     private static double[][] triangularMatrix;
     private static double[] vectorOfSolutions, vectorOfResiduals;
     private static double determinant;
+    private static int maxNumSize;
 
     public double getDeterminant() {
         return determinant;
@@ -20,6 +21,10 @@ class OutputData {
 
     public double[][] getTriangularMatrix() {
         return triangularMatrix;
+    }
+
+    public int getMaxNumSize() {
+        return maxNumSize;
     }
 
     OutputData(double[][] trMatrix, double[] vOfSolutions, double[] vOfResiduals, double det) {
@@ -38,6 +43,17 @@ class OutputData {
         }
         determinant = det;
 
+        maxNumSize = getMaxNumSize(triangularMatrix);
     }
 
+    private int getMaxNumSize(double[][] matrix) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                if (String.valueOf(matrix[i][j]).length() > maxNumSize) {
+                    maxNumSize = String.valueOf(matrix[i][j]).length();
+                }
+            }
+        }
+        return Math.round(maxNumSize / 2);
+    }
 }
