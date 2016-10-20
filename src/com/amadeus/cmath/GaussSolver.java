@@ -9,7 +9,7 @@ public class GaussSolver {
         double[] vectorOfValues = initVectorOfValues(data.getVectorOfValues());
         double[] vectorOfSolutions = new double[vectorOfValues.length];
         int i, j, k = 0, n = matrix.length;
-
+        double c, s;
         for (; k < n - 1; k++) {
 
             i = k + 1;
@@ -20,7 +20,8 @@ public class GaussSolver {
 
             for (; i < n; i++) {
 
-                double c = matrix[i][k] / matrix[k][k];
+
+                c = matrix[i][k] / matrix[k][k];
                 matrix[i][k] = 0;
                 j = k + 1;
 
@@ -35,7 +36,8 @@ public class GaussSolver {
         i = n - 1;
         for (; i > -1; i--) {
             j = i + 1;
-            double s = 0;
+
+            s = 0;
             for (; j < n; j++) {
                 s = s + matrix[i][j] * vectorOfSolutions[j];
             }

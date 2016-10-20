@@ -9,8 +9,8 @@ public class Input {
     private int n;
     private Scanner in;
     private Double[] subMatrix;
-    public static double[] vectorOfValues;
-    public static double[][] matrix;
+    private static double[] vectorOfValues;
+    private static double[][] matrix;
     private static String filePath, filePathExp, inputLine, inputLineFormatExp, arrayIndexOutOfBoundsExp, inputLineSomeExp, inputDimensionMatrix, inputDimensionFormatExp;
 
     Input(InputType inputType) {
