@@ -1,5 +1,7 @@
 package com.amadeus.cmath;
 
+import java.util.Arrays;
+
 public class GaussSolver {
 
     private static int i, j;
@@ -89,20 +91,22 @@ public class GaussSolver {
     }
 
     private static double[][] initMatrix(double[][] originalMatrix) {
-        double[][] matrix = new double[originalMatrix.length][originalMatrix[0].length];
+        if (originalMatrix == null) {
+            return null;
+        }
+        final double[][] matrix = new double[originalMatrix.length][];
         for (int i = 0; i < originalMatrix.length; i++) {
-            for (int j = 0; j < originalMatrix[0].length; j++) {
-                matrix[i][j] = originalMatrix[i][j];
-            }
+            matrix[i] = Arrays.copyOf(originalMatrix[i], originalMatrix[i].length);
         }
         return matrix;
     }
 
     private static double[] initVectorOfValues(double[] originalVectorOfValues) {
-        double[] vectorOfValues = new double[originalVectorOfValues.length];
-        for (int i = 0; i < vectorOfValues.length; i++) {
-            vectorOfValues[i] = originalVectorOfValues[i];
+        if (originalVectorOfValues == null) {
+            return null;
         }
+        double[] vectorOfValues;
+        vectorOfValues = Arrays.copyOf(originalVectorOfValues, originalVectorOfValues.length);
         return vectorOfValues;
     }
 }
