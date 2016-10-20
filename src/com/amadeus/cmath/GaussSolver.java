@@ -4,15 +4,12 @@ import java.util.Arrays;
 
 public class GaussSolver {
 
-    private static int i, j;
-    private static double c, s;
-
     public static OutputData solve(InputData data) {
         double[][] matrix = initMatrix(data.getMatrix());
         double[] vectorOfValues = initVectorOfValues(data.getVectorOfValues());
         double[] vectorOfSolutions = new double[vectorOfValues.length];
-        int n = matrix.length;
-        int k = 0;
+        int i, j, k = 0, n = matrix.length;
+
         for (; k < n - 1; k++) {
 
             i = k + 1;
@@ -23,7 +20,7 @@ public class GaussSolver {
 
             for (; i < n; i++) {
 
-                c = matrix[i][k] / matrix[k][k];
+                double c = matrix[i][k] / matrix[k][k];
                 matrix[i][k] = 0;
                 j = k + 1;
 
@@ -38,7 +35,7 @@ public class GaussSolver {
         i = n - 1;
         for (; i > -1; i--) {
             j = i + 1;
-            s = 0;
+            double s = 0;
             for (; j < n; j++) {
                 s = s + matrix[i][j] * vectorOfSolutions[j];
             }
