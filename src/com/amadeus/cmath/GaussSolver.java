@@ -43,7 +43,7 @@ public class GaussSolver {
             }
             vectorOfSolutions[i] = (vectorOfValues[i] - s) / matrix[i][i];
         }
-        return new OutputData(matrix, vectorOfSolutions, getVectorOfResiduals(vectorOfValues, matrix, vectorOfSolutions), calculateDeterminant(matrix));
+        return new OutputData(matrix, vectorOfValues, vectorOfSolutions, getVectorOfResiduals(vectorOfValues, matrix, vectorOfSolutions), calculateDeterminant(matrix));
     }
 
     private static double[] getVectorOfResiduals(double[] originalVectorOfValues, double[][] originalMatrix, double[] vectorOfSolutions) {

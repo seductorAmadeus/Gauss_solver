@@ -23,7 +23,7 @@ public class MatrixPrinter {
     public static void printOutputData(OutputData outputData) {
         String maxNumSize = String.valueOf(outputData.getMaxNumSize());
         System.out.println("\nTriangular matrix of system: ");
-        printTriangularMatrix(outputData.getTriangularMatrix(), maxNumSize);
+        printMatrix(outputData.getTriangularMatrix(), outputData.getVectorOfValues(), maxNumSize);
         System.out.println("Determinant: " + outputData.getDeterminant());
         System.out.println("\nVector of solutions: ");
         printVector(outputData.getVectorOfSolutions(), maxNumSize, "f");
@@ -59,19 +59,6 @@ public class MatrixPrinter {
                 } else {
                     System.out.printf(templateOutputString, array[i][j]);
                 }
-                System.out.print(" ");
-            }
-            System.out.println();
-        }
-        System.out.println();
-    }
-
-    private static void printTriangularMatrix(double[][] array, String maxSize) {
-        String templateOutputString = "%#.&f";
-        templateOutputString = templateOutputString.replace("#", maxSize).replace("&", String.valueOf(PRECISION));
-        for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array[0].length; j++) {
-                System.out.printf(templateOutputString, array[i][j] + 0.0);
                 System.out.print(" ");
             }
             System.out.println();
