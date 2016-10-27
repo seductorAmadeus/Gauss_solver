@@ -13,12 +13,10 @@ class InputData {
                 matrix[i][j] = originalMatrix[i][j];
             }
         }
-
         vectorOfValues = new double[originalVectorOfValues.length];
         for (int i = 0; i < vectorOfValues.length; i++) {
             vectorOfValues[i] = originalVectorOfValues[i];
         }
-
         maxNumSize = getMaxNumSize(matrix);
     }
 

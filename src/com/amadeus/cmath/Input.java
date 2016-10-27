@@ -15,13 +15,13 @@ public class Input {
             case FILE_INPUT: {
                 this.inputType = InputType.FILE_INPUT;
                 inputLineMessage = "";
-                String filePathMessage = "Please, enter the full (txt) file path: \n";
-                String filePathExp = "File not found, repeat, please: \n";
+                String filePathMessage = "Enter full (.txt) file path: \n";
+                String filePathExp = "File not found, re-enter (.txt) file path: \n";
                 inputLineFormatExp = "Format error-line, change the line in the file: \n";
                 arrayIndexOutOfBoundsExp = "Invalid number of elements in the line, change the line in the file: \n";
                 inputLineSomeExp = "Error reading line, change the line in the file:  \n";
                 inputDimensionMatrixMessage = "";
-                inputDimensionFormatExp = "Input error, change integer dimension (1 < n <= 20) of the matrix in the file: \n";
+                inputDimensionFormatExp = "Input error, change dimension of the matrix in a file on a positive integer (1 < n <= 20): \n";
                 while (true) {
                     System.out.print(filePathMessage);
                     try {
@@ -37,29 +37,29 @@ public class Input {
             case RANDOM_COEFFICIENT: {
                 this.inputType = InputType.RANDOM_COEFFICIENT;
                 inputLineMessage = "Enter the line";
-                inputLineFormatExp = "Format error-line, retype the line: \n";
-                arrayIndexOutOfBoundsExp = "Invalid number of elements in the line, retype the line \n";
-                inputLineSomeExp = "Error reading line, retype the line:  \n";
+                inputLineFormatExp = "Format error-line, re-enter the line: \n";
+                arrayIndexOutOfBoundsExp = "Invalid number of elements in the line, re-enter the line \n";
+                inputLineSomeExp = "Error reading line, re-enter the line:  \n";
                 inputDimensionMatrixMessage = "Enter dimension of the matrix: \n";
-                inputDimensionFormatExp = "Input error, re-enter the positive integer dimension (1 < n <= 20) of the matrix \n";
+                inputDimensionFormatExp = "Input error, re-enter positive integer dimension of the matrix (1 < n <= 20)\n";
                 in = new Scanner(System.in);
             }
             break;
             case CMD_INPUT: {
                 this.inputType = InputType.CMD_INPUT;
                 inputLineMessage = "Enter the line";
-                inputLineFormatExp = "Format error-line, retype the line: \n";
-                arrayIndexOutOfBoundsExp = "Invalid number of elements in the line, retype the line \n";
-                inputLineSomeExp = "Error reading line, retype the line:  \n";
+                inputLineFormatExp = "Format error-line, re-enter the line: \n";
+                arrayIndexOutOfBoundsExp = "Invalid number of elements in the line, re-enter the line \n";
+                inputLineSomeExp = "Error reading line, re-enter the line:  \n";
                 inputDimensionMatrixMessage = "Enter dimension of the matrix: \n";
-                inputDimensionFormatExp = "Input error, re-enter the positive integer dimension (1 < n <= 20) of the matrix \n";
+                inputDimensionFormatExp = "Input error, re-enter positive integer dimension of the matrix (1 < n <= 20)\n";
                 in = new Scanner(System.in);
             }
             break;
         }
     }
 
-    private Double[] getStringOfRandomValues(int n) {
+    private Double[] getVectorOfRandomValues(int n) {
         Double[] subMatrix = new Double[n + 1];
         for (int i = 0; i < subMatrix.length; i++) {
             subMatrix[i] = Math.random() * 100;
@@ -76,9 +76,9 @@ public class Input {
                 menuItem = menuItemIn.nextInt();
                 actionWasSuccessfully = true;
             } catch (NumberFormatException exp) {
-                System.out.println("Format error, re-enter menu item, please: ");
+                System.out.println("Format error, re-enter menu item (1, 2, 3 or 4): ");
             } catch (Exception exp) {
-                System.out.println("Unknown error, please try enter integer value:  ");
+                System.out.println("Format error, re-enter menu item (1, 2, 3 or 4): ");
             }
             if (actionWasSuccessfully) {
                 break;
@@ -87,9 +87,9 @@ public class Input {
         return menuItem;
     }
 
-    private Double[] getStringValues(int n) {
+    private Double[] getVector(int n) {
         Double[] subMatrix;
-        String resultString[];
+        String[] resultString;
         int i = 0;
         while (true) {
             try {
@@ -152,9 +152,9 @@ public class Input {
         }
         for (i = 0; i < n; i++) {
             if (inputType == InputType.RANDOM_COEFFICIENT) {
-                subMatrix = getStringOfRandomValues(n);
+                subMatrix = getVectorOfRandomValues(n);
             } else {
-                subMatrix = getStringValues(n);
+                subMatrix = getVector(n);
             }
             for (j = 0; j < n + 1; j++) {
                 if (j + 1 >= n + 1) {

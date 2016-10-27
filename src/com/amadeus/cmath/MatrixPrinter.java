@@ -39,7 +39,6 @@ public class MatrixPrinter {
                 "3 : Run Gauss method\n" +
                 "4 : Exit\n" +
                 "Enter menu item:\n");
-
     }
 
     public static void printSideMenu() {

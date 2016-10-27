@@ -11,32 +11,24 @@ public class GaussSolver {
         int i, j, k = 0, n = matrix.length;
         double c, s;
         for (; k < n - 1; k++) {
-
             i = k + 1;
-
             while (matrix[k][k] == 0) {
                 matrix = permutationEquations(matrix, k, n);
             }
-
             for (; i < n; i++) {
-
-
                 c = matrix[i][k] / matrix[k][k];
                 matrix[i][k] = 0;
                 j = k + 1;
-
                 for (; j < n; j++) {
                     matrix[i][j] = matrix[i][j] - c * matrix[k][j];
                 }
                 vectorOfValues[i] = vectorOfValues[i] - c * vectorOfValues[k];
             }
         }
-
         vectorOfSolutions[n - 1] = vectorOfValues[n - 1] / matrix[n - 1][n - 1];
         i = n - 1;
         for (; i > -1; i--) {
             j = i + 1;
-
             s = 0;
             for (; j < n; j++) {
                 s = s + matrix[i][j] * vectorOfSolutions[j];

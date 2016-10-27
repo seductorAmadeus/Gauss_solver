@@ -32,14 +32,14 @@ public class Main {
                 }
                 break;
                 default:
-                    System.out.println("Re-enter menu item, please\n");
+                    System.out.println("Re-enter menu item \n");
             }
         }
     }
 
     private static void runGaussSolver(InputData inputData) {
         if (inputData == null || !dataEntered) {
-            System.out.println("The input data is not found; please, enter new data \n");
+            System.out.println("The input data is not found; enter new data \n");
         } else {
             OutputData outputData;
             outputData = GaussSolver.solve(inputData);
@@ -70,7 +70,7 @@ public class Main {
                 }
                 break;
                 default:
-                    System.out.println("Re-enter menu item, please\n");
+                    System.out.println("Re-enter menu item \n");
             }
             if (actionWasSuccessfully) {
                 dataEntered = false;
@@ -78,7 +78,6 @@ public class Main {
             }
         }
     }
-
 
     private static InputData getNewData() {
         input = new Input(type);
