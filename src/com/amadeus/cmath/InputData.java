@@ -1,9 +1,10 @@
 package com.amadeus.cmath;
 
 class InputData {
-    private static double[][] matrix;
-    private static double[] vectorOfValues;
-    private static int maxNumSize;
+
+    private double[][] matrix;
+    private double[] vectorOfValues;
+    private int maxNumSize;
 
     InputData(double[][] originalMatrix, double[] originalVectorOfValues) {
         matrix = new double[originalMatrix.length][originalMatrix[0].length];

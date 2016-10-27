@@ -5,30 +5,25 @@ import java.util.*;
 
 public class Input {
 
-    private InputType type;
-    private int n;
+    private String inputLineMessage, inputLineFormatExp, arrayIndexOutOfBoundsExp, inputDimensionFormatExp, inputDimensionMatrixMessage, inputLineSomeExp;
+    private InputType inputType;
     private Scanner in;
-    private Double[] subMatrix;
-    private static double[] vectorOfValues;
-    private static double[][] matrix;
-    private static String filePath, filePathExp, inputLine, inputLineFormatExp, arrayIndexOutOfBoundsExp, inputLineSomeExp, inputDimensionMatrix, inputDimensionFormatExp;
 
     Input(InputType inputType) {
 
         switch (inputType) {
             case FILE_INPUT: {
-                type = InputType.FILE_INPUT;
-                inputLine = "";
-                filePath = "Please, enter the full (txt) file path: \n";
-                filePathExp = "File not found, repeat, please: \n";
+                this.inputType = InputType.FILE_INPUT;
+                inputLineMessage = "";
+                String filePathMessage = "Please, enter the full (txt) file path: \n";
+                String filePathExp = "File not found, repeat, please: \n";
                 inputLineFormatExp = "Format error-line, change the line in the file: \n";
                 arrayIndexOutOfBoundsExp = "Invalid number of elements in the line, change the line in the file: \n";
                 inputLineSomeExp = "Error reading line, change the line in the file:  \n";
-                inputDimensionMatrix = "";
+                inputDimensionMatrixMessage = "";
                 inputDimensionFormatExp = "Input error, change integer dimension (1 < n <= 20) of the matrix in the file: \n";
-
                 while (true) {
-                    System.out.print(filePath);
+                    System.out.print(filePathMessage);
                     try {
                         Scanner filepathIn = new Scanner(System.in);
                         in = new Scanner(new File(filepathIn.nextLine()));
@@ -40,23 +35,23 @@ public class Input {
             }
             break;
             case RANDOM_COEFFICIENT: {
-                type = InputType.RANDOM_COEFFICIENT;
-                inputLine = "Enter the line";
+                this.inputType = InputType.RANDOM_COEFFICIENT;
+                inputLineMessage = "Enter the line";
                 inputLineFormatExp = "Format error-line, retype the line: \n";
                 arrayIndexOutOfBoundsExp = "Invalid number of elements in the line, retype the line \n";
                 inputLineSomeExp = "Error reading line, retype the line:  \n";
-                inputDimensionMatrix = "Enter dimension of the matrix: \n";
+                inputDimensionMatrixMessage = "Enter dimension of the matrix: \n";
                 inputDimensionFormatExp = "Input error, re-enter the positive integer dimension (1 < n <= 20) of the matrix \n";
                 in = new Scanner(System.in);
             }
             break;
             case CMD_INPUT: {
-                type = InputType.CMD_INPUT;
-                inputLine = "Enter the line";
+                this.inputType = InputType.CMD_INPUT;
+                inputLineMessage = "Enter the line";
                 inputLineFormatExp = "Format error-line, retype the line: \n";
                 arrayIndexOutOfBoundsExp = "Invalid number of elements in the line, retype the line \n";
                 inputLineSomeExp = "Error reading line, retype the line:  \n";
-                inputDimensionMatrix = "Enter dimension of the matrix: \n";
+                inputDimensionMatrixMessage = "Enter dimension of the matrix: \n";
                 inputDimensionFormatExp = "Input error, re-enter the positive integer dimension (1 < n <= 20) of the matrix \n";
                 in = new Scanner(System.in);
             }
@@ -64,8 +59,8 @@ public class Input {
         }
     }
 
-    private Double[] getStringOfRandomValues() {
-        subMatrix = new Double[n + 1];
+    private Double[] getStringOfRandomValues(int n) {
+        Double[] subMatrix = new Double[n + 1];
         for (int i = 0; i < subMatrix.length; i++) {
             subMatrix[i] = Math.random() * 100;
         }
@@ -92,13 +87,14 @@ public class Input {
         return menuItem;
     }
 
-    private Double[] getStringValues() {
+    private Double[] getStringValues(int n) {
+        Double[] subMatrix;
         String resultString[];
         int i = 0;
         while (true) {
             try {
-                if (inputLine.length() != 0) {
-                    System.out.print(inputLine + ", containing " + (n + 1) + " argument the augmented matrix of the system:\n");
+                if (inputLineMessage.length() != 0) {
+                    System.out.print(inputLineMessage + ", containing " + (n + 1) + " argument the augmented matrix of the system:\n");
                 }
                 resultString = in.nextLine().split("\\s+");
                 subMatrix = new Double[n + 1];
@@ -112,17 +108,17 @@ public class Input {
                 break;
             } catch (NumberFormatException exp) {
                 System.out.print(inputLineFormatExp);
-                if (type == InputType.FILE_INPUT) {
+                if (inputType == InputType.FILE_INPUT) {
                     Runtime.getRuntime().exit(1);
                 }
             } catch (ArrayIndexOutOfBoundsException exp) {
                 System.out.print(arrayIndexOutOfBoundsExp);
-                if (type == InputType.FILE_INPUT) {
+                if (inputType == InputType.FILE_INPUT) {
                     Runtime.getRuntime().exit(1);
                 }
             } catch (Exception exp) {
                 System.out.print(inputLineSomeExp);
-                if (type == InputType.FILE_INPUT) {
+                if (inputType == InputType.FILE_INPUT) {
                     Runtime.getRuntime().exit(1);
                 }
             } finally {
@@ -133,11 +129,13 @@ public class Input {
     }
 
     public InputData getInputData() {
-        int i, j;
+        Double[] subMatrix;
+        int i, j, n;
+        double[][] matrix;
+        double[] vectorOfValues;
         while (true) {
-
             try {
-                System.out.print(inputDimensionMatrix);
+                System.out.print(inputDimensionMatrixMessage);
                 n = Integer.valueOf(in.nextLine().replaceAll("[\\s]{2,}", ""));
                 if ((n <= 1) || (n > 20)) {
                     throw new NumberFormatException();
@@ -147,16 +145,16 @@ public class Input {
                 break;
             } catch (NumberFormatException exp) {
                 System.out.print(inputDimensionFormatExp);
-                if (type == InputType.FILE_INPUT) {
+                if (inputType == InputType.FILE_INPUT) {
                     Runtime.getRuntime().exit(1);
                 }
             }
         }
         for (i = 0; i < n; i++) {
-            if (type == InputType.RANDOM_COEFFICIENT) {
-                getStringOfRandomValues();
+            if (inputType == InputType.RANDOM_COEFFICIENT) {
+                subMatrix = getStringOfRandomValues(n);
             } else {
-                getStringValues();
+                subMatrix = getStringValues(n);
             }
             for (j = 0; j < n + 1; j++) {
                 if (j + 1 >= n + 1) {

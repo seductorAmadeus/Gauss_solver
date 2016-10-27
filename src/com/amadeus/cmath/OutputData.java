@@ -2,10 +2,10 @@ package com.amadeus.cmath;
 
 class OutputData {
 
-    private static double[][] triangularMatrix;
-    private static double[] vectorOfSolutions, vectorOfResiduals, vectorOfValues;
-    private static double determinant;
-    private static int maxNumSize;
+    private double[][] triangularMatrix;
+    private double[] vectorOfSolutions, vectorOfResiduals, vectorOfValues;
+    private double determinant;
+    private int maxNumSize;
 
     OutputData(double[][] trMatrix, double[] vOfValues, double[] vOfSolutions, double[] vOfResiduals, double det) {
         triangularMatrix = new double[trMatrix.length][trMatrix[0].length];

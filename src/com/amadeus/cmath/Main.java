@@ -40,7 +40,6 @@ public class Main {
     private static void runGaussSolver(InputData inputData) {
         if (inputData == null || !dataEntered) {
             System.out.println("The input data is not found; please, enter new data \n");
-
         } else {
             OutputData outputData;
             outputData = GaussSolver.solve(inputData);
@@ -63,7 +62,6 @@ public class Main {
                 case 2: {
                     type = InputType.FILE_INPUT;
                     actionWasSuccessfully = true;
-
                 }
                 break;
                 case 3: {
