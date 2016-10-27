@@ -93,15 +93,14 @@ public class Input {
     }
 
     private Double[] getStringValues() {
-        String someString, resultString[];
+        String resultString[];
         int i = 0;
         while (true) {
             try {
                 if (inputLine.length() != 0) {
                     System.out.print(inputLine + ", containing " + (n + 1) + " argument the augmented matrix of the system:\n");
                 }
-                someString = in.nextLine();
-                resultString = someString.split(" ");
+                resultString = in.nextLine().split("\\s+");
                 subMatrix = new Double[n + 1];
                 for (int k = 0; k < resultString.length; k++) {
                     subMatrix[i] = Double.valueOf(resultString[k]);
@@ -139,7 +138,7 @@ public class Input {
 
             try {
                 System.out.print(inputDimensionMatrix);
-                n = Integer.valueOf(in.nextLine());
+                n = Integer.valueOf(in.nextLine().replaceAll("[\\s]{2,}", ""));
                 if ((n <= 1) || (n > 20)) {
                     throw new NumberFormatException();
                 }
