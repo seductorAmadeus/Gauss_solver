@@ -15,13 +15,13 @@ public class MatrixPrinter {
     }
 
     public static void printInputData(InputData inputData) {
-        String maxNumSize = String.valueOf(inputData.getMaxNumSize() * PRECISION);
+        String maxNumSize = String.valueOf(inputData.getMaxNumSize());
         System.out.println("\nAugmented matrix of the system: ");
         printMatrix(inputData.getMatrix(), inputData.getVectorOfValues(), maxNumSize);
     }
 
     public static void printOutputData(OutputData outputData) {
-        String maxNumSize = String.valueOf(outputData.getMaxNumSize());
+        String maxNumSize = String.valueOf(outputData.getMaxNumSize() );
         System.out.println("\nTriangular matrix of system: ");
         printMatrix(outputData.getTriangularMatrix(), outputData.getVectorOfValues(), maxNumSize);
         System.out.println("Determinant: " + outputData.getDeterminant());
@@ -54,6 +54,7 @@ public class MatrixPrinter {
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[0].length + 1; j++) {
                 if (j + 1 >= array[0].length + 1) {
+                    System.out.print("\t|");
                     System.out.printf(templateOutputString, vectorOfValues[i]);
                 } else {
                     System.out.printf(templateOutputString, array[i][j]);
