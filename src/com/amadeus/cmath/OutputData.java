@@ -60,6 +60,6 @@ class OutputData {
                 }
             }
         }
-        return Math.round(maxNumSize);
+        return maxNumSize;
     }
 }

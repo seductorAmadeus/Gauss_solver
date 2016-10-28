@@ -40,6 +40,6 @@ class InputData {
                 }
             }
         }
-        return Math.round(maxNumSize);
+        return maxNumSize;
     }
 }
